@@ -688,27 +688,27 @@
     color: var(--ink-soft);
   }
   .kpis {
-    background: var(--ink);
-    color: white;
+    background: white;
+    color: var(--ink);
   }
   .kpis .section-eyebrow {
-    background: rgba(255,255,255,0.1);
-    color: #FFD700;
+    background: var(--gradient-volt-soft);
+    color: var(--vm-red);
   }
   .kpi-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 0;
     margin-top: 56px;
-    border-top: 1px solid rgba(255,255,255,0.15);
-    border-bottom: 1px solid rgba(255,255,255,0.15);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
   }
   @media (max-width: 900px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 500px) { .kpi-grid { grid-template-columns: 1fr; } }
   .kpi {
     padding: 36px 24px;
-    border-right: 1px solid rgba(255,255,255,0.15);
-    border-bottom: 1px solid rgba(255,255,255,0.15);
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
   }
   .kpi:last-child { border-right: none; }
   .kpi-value {
@@ -717,14 +717,14 @@
     font-weight: 800;
     line-height: 1;
     margin-bottom: 8px;
-    background: linear-gradient(135deg, #FFFFFF 0%, #FF1493 100%);
+    background: var(--gradient-volt);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
   .kpi-label {
     font-size: 13px;
-    opacity: 0.7;
+    color: var(--ink-soft);
     font-weight: 600;
   }
 
@@ -1276,15 +1276,13 @@
 
   /* ====== REPORTING ====== */
   .reporting {
-    background: #0A0A0A;
-    color: white;
+    background: var(--bg-soft);
+    color: var(--ink);
   }
   .reporting .section-eyebrow {
-    background: rgba(255,255,255,0.08);
-    color: #FFD700;
+    background: var(--gradient-volt-soft);
+    color: var(--vm-red);
   }
-  .reporting .section-title { color: white; }
-  .reporting .section-lead { color: rgba(255,255,255,0.7); }
 
   .reporting-grid {
     display: grid;
@@ -1295,19 +1293,20 @@
   @media (max-width: 1000px) { .reporting-grid { grid-template-columns: 1fr; } }
 
   .report-card {
-    background: linear-gradient(160deg, #161616 0%, #0F0F0F 100%);
-    border: 1px solid rgba(255,255,255,0.08);
+    background: white;
+    border: 1px solid var(--line);
     border-radius: 20px;
     padding: 32px;
     display: flex;
     flex-direction: column;
     gap: 24px;
     position: relative;
-    transition: transform 0.3s, border-color 0.3s;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
   }
   .report-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(255,255,255,0.18);
+    border-color: var(--vm-red);
+    box-shadow: var(--shadow-soft);
   }
   .report-card.is-coming::after {
     content: 'COMING SOON';
@@ -1318,7 +1317,7 @@
     background: rgba(0,168,225,0.12);
     border: 1px solid rgba(0,168,225,0.4);
     border-radius: 100px;
-    color: var(--o2-cyan);
+    color: var(--o2-blue);
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 0.1em;
@@ -1353,7 +1352,7 @@
     font-size: 12px;
     font-weight: 800;
     letter-spacing: 0.12em;
-    color: rgba(255,255,255,0.55);
+    color: var(--ink-mute);
     text-transform: uppercase;
     margin-bottom: 4px;
   }
@@ -1361,14 +1360,14 @@
     font-family: 'Sora', sans-serif;
     font-size: 20px;
     font-weight: 700;
-    color: white;
+    color: var(--ink);
     line-height: 1.2;
   }
 
   .report-card hr {
     border: none;
     height: 1px;
-    background: rgba(255,255,255,0.08);
+    background: var(--line);
     margin: 0;
   }
 
@@ -1377,11 +1376,11 @@
     font-size: 28px;
     font-weight: 800;
     line-height: 1.15;
-    color: white;
+    color: var(--ink);
     letter-spacing: -0.01em;
   }
   .report-desc {
-    color: rgba(255,255,255,0.7);
+    color: var(--ink-soft);
     font-size: 15px;
     line-height: 1.6;
   }
@@ -1394,12 +1393,12 @@
   }
   .report-tag {
     padding: 8px 16px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
     border-radius: 100px;
     font-size: 13px;
     font-weight: 600;
-    color: rgba(255,255,255,0.85);
+    color: var(--ink-soft);
   }
 
   .report-contact {
@@ -1407,8 +1406,8 @@
     align-items: center;
     gap: 12px;
     padding: 14px 16px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
     border-radius: 14px;
   }
   .contact-avatar {
@@ -1428,12 +1427,12 @@
   .contact-name {
     font-size: 14px;
     font-weight: 700;
-    color: white;
+    color: var(--ink);
     margin-bottom: 2px;
   }
   .contact-role {
     font-size: 12px;
-    color: rgba(255,255,255,0.55);
+    color: var(--ink-mute);
   }
 
   /* ====== CTA BANNER ====== */
@@ -2334,8 +2333,8 @@
 <section class="kpis" id="metrics">
   <div class="container">
     <span class="section-eyebrow">Path to Green KPIs</span>
-    <h2 class="section-title" style="color: white;">How we'll know we got there.</h2>
-    <p class="section-lead" style="color: rgba(255,255,255,0.75);">Five measures keep us honest. Containment is the headline - but customer experience is the soul.</p>
+    <h2 class="section-title">How we'll know we got there.</h2>
+    <p class="section-lead">Five measures keep us honest. Containment is the headline - but customer experience is the soul.</p>
 
     <div class="kpi-grid">
       <div class="kpi">
