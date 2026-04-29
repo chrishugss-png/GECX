@@ -821,6 +821,326 @@
   }
   .risk-row span { color: var(--ink-soft); }
 
+  /* ====== OPEX OPTIMISATION ====== */
+  .opex {
+    background: white;
+  }
+  .opex-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 64px;
+    align-items: center;
+    margin-top: 48px;
+  }
+  @media (max-width: 900px) { .opex-wrap { grid-template-columns: 1fr; gap: 40px; } }
+
+  .opex-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .opex-total {
+    background: linear-gradient(135deg, #FFE5E5 0%, #FFE5F5 50%, #E5EAFF 100%);
+    border-radius: 24px;
+    padding: 40px;
+    text-align: left;
+  }
+  .opex-total-label {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+  .opex-total-value {
+    font-family: 'Sora', sans-serif;
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1;
+    background: var(--gradient-volt);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 8px;
+  }
+  .opex-total-sub {
+    font-size: 15px;
+    color: var(--ink-soft);
+  }
+  .opex-callouts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .opex-callout {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px 20px;
+  }
+  .opex-callout-num {
+    font-family: 'Sora', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .opex-callout-lbl {
+    font-size: 12px;
+    color: var(--ink-mute);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .opex-chart {
+    background: var(--bg-soft);
+    border-radius: 24px;
+    padding: 40px 36px 32px;
+    border: 1px solid var(--line);
+  }
+  .opex-chart-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .opex-chart-title span:last-child {
+    font-size: 12px;
+    color: var(--ink-mute);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .bars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    height: 320px;
+    align-items: end;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 16px;
+  }
+  .bar-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+    position: relative;
+  }
+  .bar-value {
+    font-family: 'Sora', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease-out forwards;
+    animation-delay: 1.2s;
+  }
+  .bar {
+    width: 100%;
+    max-width: 90px;
+    border-radius: 12px 12px 0 0;
+    height: 0;
+    transition: height 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .bar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 60%);
+    pointer-events: none;
+  }
+  .bar-1 { background: linear-gradient(180deg, #FF6B6B 0%, #E10A0A 100%); }
+  .bar-2 { background: linear-gradient(180deg, #FF4D8A 0%, #FF1493 100%); }
+  .bar-3 { background: linear-gradient(180deg, #A055D6 0%, #6A0DAD 100%); }
+  .bar-4 { background: linear-gradient(180deg, #4D6FFF 0%, #0019A5 100%); }
+
+  .bar-labels {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .bar-label {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink-soft);
+  }
+
+  /* ====== REPORTING ====== */
+  .reporting {
+    background: #0A0A0A;
+    color: white;
+  }
+  .reporting .section-eyebrow {
+    background: rgba(255,255,255,0.08);
+    color: #FFD700;
+  }
+  .reporting .section-title { color: white; }
+  .reporting .section-lead { color: rgba(255,255,255,0.7); }
+
+  .reporting-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+  @media (max-width: 1000px) { .reporting-grid { grid-template-columns: 1fr; } }
+
+  .report-card {
+    background: linear-gradient(160deg, #161616 0%, #0F0F0F 100%);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: relative;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .report-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,255,255,0.18);
+  }
+  .report-card.is-coming::after {
+    content: 'COMING SOON';
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    padding: 6px 14px;
+    background: rgba(0,168,225,0.12);
+    border: 1px solid rgba(0,168,225,0.4);
+    border-radius: 100px;
+    color: var(--o2-cyan);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+  }
+
+  .report-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .report-logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    color: white;
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .report-logo.ga4 { background: linear-gradient(135deg, #FF8800 0%, #FF6B00 100%); }
+  .report-logo.cw { background: linear-gradient(135deg, #FF9900 0%, #E47911 100%); }
+  .report-logo.tableau { background: linear-gradient(135deg, #1F77B4 0%, #2E5C8A 100%); }
+
+  .report-meta {
+    flex: 1;
+    min-width: 0;
+  }
+  .report-platform {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .report-name {
+    font-family: 'Sora', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+  }
+
+  .report-card hr {
+    border: none;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin: 0;
+  }
+
+  .report-headline {
+    font-family: 'Sora', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.15;
+    color: white;
+    letter-spacing: -0.01em;
+  }
+  .report-desc {
+    color: rgba(255,255,255,0.7);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .report-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+  }
+  .report-tag {
+    padding: 8px 16px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .report-contact {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+  }
+  .contact-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2EC4B6 0%, #1A9C8E 100%);
+    display: grid;
+    place-items: center;
+    color: white;
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .contact-info { min-width: 0; }
+  .contact-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 2px;
+  }
+  .contact-role {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+  }
+
   /* ====== CTA BANNER ====== */
   .cta-banner {
     background: var(--gradient-volt);
@@ -922,6 +1242,8 @@
       <li><a href="#delivery">Delivery</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
       <li><a href="#metrics">Metrics</a></li>
+      <li><a href="#opex">OPEX</a></li>
+      <li><a href="#reporting">Reporting</a></li>
     </ul>
   </div>
 </nav>
@@ -1132,6 +1454,72 @@
         <div class="tier-volume">
           <div class="big">6.5m</div>
           <div class="small">2027 containment goal</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== OPEX OPTIMISATION ===== -->
+<section class="opex" id="opex">
+  <div class="container">
+    <span class="section-eyebrow">Financial Impact</span>
+    <h2 class="section-title">OPEX Optimisation.</h2>
+    <p class="section-lead">ROI will scale with the positive impact on the customer experience.</p>
+
+    <div class="opex-wrap">
+      <!-- Left: total summary -->
+      <div class="opex-summary">
+        <div class="opex-total">
+          <div class="opex-total-label">Total OPEX Avoidance</div>
+          <div class="opex-total-value">£34m</div>
+          <div class="opex-total-sub">Cumulative savings by end of 2027 — scaling each half as more intents go live.</div>
+        </div>
+        <div class="opex-callouts">
+          <div class="opex-callout">
+            <div class="opex-callout-num">£12m</div>
+            <div class="opex-callout-lbl">2026 Total</div>
+          </div>
+          <div class="opex-callout">
+            <div class="opex-callout-num">£22m</div>
+            <div class="opex-callout-lbl">2027 Total</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: bar chart -->
+      <div class="opex-chart">
+        <div class="opex-chart-title">
+          <span>OPEX Savings by Half</span>
+          <span>£ millions</span>
+        </div>
+
+        <div class="bars" id="opex-bars">
+          <div class="bar-col">
+            <div class="bar-value">£5m</div>
+            <div class="bar bar-1" data-target="38.5"></div>
+          </div>
+          <div class="bar-col">
+            <div class="bar-value">£7m</div>
+            <div class="bar bar-2" data-target="53.8"></div>
+          </div>
+          <div class="bar-col">
+            <div class="bar-value">£9m</div>
+            <div class="bar bar-3" data-target="69.2"></div>
+          </div>
+          <div class="bar-col">
+            <div class="bar-value">£13m</div>
+            <div class="bar bar-4" data-target="100"></div>
+          </div>
+        </div>
+
+        <div class="bar-labels">
+          <div class="bar-label">H1 2026</div>
+          <div class="bar-label">H2 2026</div>
+          <div class="bar-label">H1 2027</div>
+          <div class="bar-label">H2 2027</div>
         </div>
       </div>
     </div>
@@ -1410,6 +1798,85 @@
   </div>
 </section>
 
+<!-- ===== REPORTING ===== -->
+<section class="reporting" id="reporting">
+  <div class="container">
+    <span class="section-eyebrow">Reporting & Insight</span>
+    <h2 class="section-title">How we'll measure it.</h2>
+    <p class="section-lead">Three platforms, one performance picture. From the first click to the final conversation outcome, we instrument the full journey.</p>
+
+    <div class="reporting-grid">
+
+      <!-- Card 1: Google Analytics -->
+      <div class="report-card">
+        <div class="report-head">
+          <div class="report-logo ga4">GA4</div>
+          <div class="report-meta">
+            <div class="report-platform">Platform · 01</div>
+            <div class="report-name">Google Analytics</div>
+          </div>
+        </div>
+        <hr>
+        <h3 class="report-headline">Volume, revenue & URL tracking.</h3>
+        <p class="report-desc">Every session, every entry point, every conversion. GA4 owns the top-of-funnel view — from which URL triggered which widget to the revenue it generated.</p>
+        <div class="report-tags">
+          <span class="report-tag">Session Volume</span>
+          <span class="report-tag">Revenue Attribution</span>
+          <span class="report-tag">URL Pathing</span>
+          <span class="report-tag">Widget Triggers</span>
+        </div>
+      </div>
+
+      <!-- Card 2: AWS CloudWatch -->
+      <div class="report-card">
+        <div class="report-head">
+          <div class="report-logo cw">CW</div>
+          <div class="report-meta">
+            <div class="report-platform">Platform · 02</div>
+            <div class="report-name">AWS CloudWatch</div>
+          </div>
+        </div>
+        <hr>
+        <h3 class="report-headline">Containment rate reporting.</h3>
+        <p class="report-desc">The single source of truth for how many conversations the VA resolves on its own — directly surfaced from the Amazon Connect and Lex pipeline.</p>
+        <div class="report-tags">
+          <span class="report-tag">Contain Rate</span>
+          <span class="report-tag">Intent Resolution</span>
+          <span class="report-tag">Escalation Ratios</span>
+        </div>
+        <div class="report-contact">
+          <div class="contact-avatar">JL</div>
+          <div class="contact-info">
+            <div class="contact-name">Josh Lloyd</div>
+            <div class="contact-role">Available on request · VOC Insight</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Tableau -->
+      <div class="report-card is-coming">
+        <div class="report-head">
+          <div class="report-logo tableau">T</div>
+          <div class="report-meta">
+            <div class="report-platform">Platform · 03</div>
+            <div class="report-name">Tableau</div>
+          </div>
+        </div>
+        <hr>
+        <h3 class="report-headline">Downstream performance.</h3>
+        <p class="report-desc">The full-funnel view — connecting VA interactions to what happens next. Retention, repeat contact, resolution quality, and business impact.</p>
+        <div class="report-tags">
+          <span class="report-tag">Downstream Impact</span>
+          <span class="report-tag">Repeat Contact</span>
+          <span class="report-tag">Resolution Quality</span>
+          <span class="report-tag">Cohort Analysis</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ===== CTA BANNER ===== -->
 <div class="container">
   <div class="cta-banner">
@@ -1535,6 +2002,21 @@
       renderIntents(f);
     });
   });
+  // OPEX bar chart — animate on scroll into view
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.bar').forEach((bar, i) => {
+          const pct = bar.dataset.target;
+          setTimeout(() => { bar.style.height = pct + '%'; }, 100 + i * 120);
+        });
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const barContainer = document.getElementById('opex-bars');
+  if (barContainer) barObserver.observe(barContainer);
 </script>
 
 </body>
