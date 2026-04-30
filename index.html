@@ -1370,6 +1370,256 @@
   .gantt-legend-dot.t3 { background: var(--volt-purple); }
   .gantt-legend-dot.t4 { background: var(--ink); }
 
+  /* ====== ROADMAP GANTT SUB-SECTION ====== */
+  .roadmap-gantt-block {
+    margin-top: 64px;
+    padding-top: 56px;
+    border-top: 1px solid var(--line);
+  }
+  .roadmap-gantt-head {
+    margin-bottom: 32px;
+  }
+  .roadmap-gantt-head h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+  .roadmap-gantt-head p {
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 720px;
+    line-height: 1.5;
+  }
+
+  /* ====== SCATTER CHART (VALUE MAP) ====== */
+  .scatter-card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 32px 32px 24px 88px;
+    margin-top: 48px;
+    position: relative;
+  }
+  .scatter-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .scatter-head-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .scatter-head-sub {
+    font-size: 13px;
+    color: var(--ink-mute);
+    font-weight: 600;
+  }
+  .scatter-legend {
+    display: flex;
+    gap: 16px;
+  }
+  .scatter-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+  .scatter-legend-item .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 100px;
+  }
+  .dot.vm-brand { background: var(--vm-red); }
+  .dot.o2-brand { background: var(--o2-blue); }
+
+  .scatter-wrap {
+    position: relative;
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 12px;
+    height: 420px;
+  }
+  .scatter-yaxis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 11px;
+    color: var(--ink-mute);
+    font-weight: 600;
+    padding: 6px 0;
+  }
+
+  .scatter-plot {
+    position: relative;
+    background: linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 100%);
+    border-left: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    border-radius: 0;
+    overflow: visible;
+  }
+  .scatter-gridlines, .scatter-vlines {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    pointer-events: none;
+  }
+  .scatter-gridlines { flex-direction: column; justify-content: space-between; }
+  .scatter-vlines { flex-direction: row; }
+  .scatter-vlines .grid-v {
+    flex: 1;
+    border-right: 1px solid var(--line);
+    background: transparent;
+  }
+  .scatter-vlines .grid-v:last-child { border-right: none; }
+  .grid-h {
+    width: 100%;
+    height: 1px;
+    background: var(--line);
+  }
+  .grid-v {
+    height: 100%;
+  }
+
+  .bubble {
+    position: absolute;
+    border-radius: 100px;
+    transform: translate(-50%, 50%);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+    opacity: 0;
+    animation: bubblePop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    border: 2px solid white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  @keyframes bubblePop {
+    from { opacity: 0; transform: translate(-50%, 50%) scale(0); }
+    to { opacity: 0.85; transform: translate(-50%, 50%) scale(1); }
+  }
+  .bubble:hover {
+    opacity: 1;
+    transform: translate(-50%, 50%) scale(1.15);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    z-index: 10;
+  }
+  .bubble.vm { background: radial-gradient(circle at 30% 30%, #FF6B6B 0%, #E10A0A 70%); }
+  .bubble.o2 { background: radial-gradient(circle at 30% 30%, #4D6FFF 0%, #0019A5 70%); }
+
+  .scatter-xaxis {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    margin-left: 62px;
+    margin-top: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink-soft);
+  }
+  .scatter-xaxis span {
+    text-align: center;
+  }
+
+  .scatter-yaxis-label {
+    position: absolute;
+    left: 22px;
+    top: 50%;
+    transform: rotate(-90deg) translateX(50%);
+    transform-origin: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+  .scatter-xaxis-label {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .scatter-tooltip {
+    position: absolute;
+    background: var(--ink);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 100;
+    white-space: nowrap;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    transform: translate(-50%, calc(-100% - 12px));
+  }
+  .scatter-tooltip.visible { opacity: 1; }
+  .scatter-tooltip strong {
+    display: block;
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+  .scatter-tooltip .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 12px;
+    opacity: 0.85;
+    line-height: 1.5;
+  }
+
+  .scatter-insights {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  @media (max-width: 800px) { .scatter-insights { grid-template-columns: 1fr; } }
+  .insight {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px;
+  }
+  .insight-num {
+    font-family: 'Sora', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1;
+    background: var(--gradient-volt);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 8px;
+  }
+  .insight-lbl {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 700px) {
+    .scatter-card { padding: 24px 16px 16px 60px; }
+    .scatter-yaxis-label { left: 8px; }
+  }
+
   /* ====== COMPLIANCE & CONTROL ====== */
   .compliance {
     background: linear-gradient(160deg, #0F0F12 0%, #1A1A22 100%);
@@ -1679,6 +1929,11 @@
     inset: 0;
     background-image: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15) 0%, transparent 40%),
                       radial-gradient(circle at 70% 70%, rgba(255,255,255,0.1) 0%, transparent 40%);
+    pointer-events: none;
+  }
+  .cta-banner .hero-cta {
+    position: relative;
+    z-index: 2;
   }
   .cta-banner h2 {
     font-size: clamp(32px, 4vw, 48px);
@@ -1865,7 +2120,7 @@
   <div class="container">
     <span class="section-eyebrow">Strategic Principles</span>
     <h2 class="section-title">Four ways we get to green.</h2>
-    <p class="section-lead">Every agentic agent we onboard follows the same playbook - built for volume, designed to act, and governed by readiness.</p>
+    <p class="section-lead">Every agent we onboard follows the same playbook - built for volume, designed to act, and governed by readiness.</p>
 
     <div class="principle-grid">
       <div class="principle">
@@ -1886,7 +2141,7 @@
           </svg>
         </div>
         <h3>Customer-Centric Optimisation</h3>
-        <p>A CX framework designed to deliver high-impact, effective solutions.</p>
+        <p>Reverse engineer solutions from the point of resolution by design.</p>
       </div>
 
       <div class="principle">
@@ -2088,7 +2343,7 @@
               <circle cx="12" cy="12" r="1.5" fill="#0019A5"/>
             </svg>
           </div>
-          <span><strong>Intents:</strong> Fixed Billing, Movers, General & Care</span>
+          <span><strong>Intents:</strong> Fixed Billing, Appointments, General & Care</span>
         </div>
 
         <div class="partners">
@@ -2282,7 +2537,7 @@
           <p>Volume + moderate complexity. Squad 2's fast-follower remit - deeper integrations and personalised flows.</p>
           <div class="tier-tags">
             <span class="tier-tag">Fixed Billing</span>
-            <span class="tier-tag">Home Moves</span>
+            <span class="tier-tag">Appointments</span>
             <span class="tier-tag">General Care</span>
           </div>
         </div>
@@ -2400,7 +2655,7 @@
         <ul>
           <li>Roll out Tier 2 intents</li>
           <li>Fixed Billing onboarded</li>
-          <li>Movers journey live</li>
+          <li>Appointments journey live</li>
           <li>Parallel squad execution</li>
           <li>Cross-product orchestration</li>
         </ul>
@@ -2432,18 +2687,13 @@
         </ul>
       </div>
     </div>
-  </div>
-</section>
 
-<hr class="divider">
-
-<!-- ===== VALUE MAP (GANTT) ===== -->
-<section class="valuemap" id="value-map">
-  <div class="container">
-    <span class="section-eyebrow">Value Map</span>
-    <h2 class="section-title">When each intent goes live.</h2>
-    <p class="section-lead">A half-by-half view of the agentic roadmap — sequencing the work so value compounds: foundation first, scale next, then long-tail and full coverage.</p>
-
+    <!-- ===== When each intent goes live (sub-section, formerly Value Map) ===== -->
+    <div class="roadmap-gantt-block">
+      <div class="roadmap-gantt-head">
+        <h3>When each intent goes live.</h3>
+        <p>A half-by-half view of the agentic roadmap — sequencing the work so value compounds: foundation first, scale next, then long-tail and full coverage.</p>
+      </div>
     <div class="gantt">
       <div class="gantt-inner">
         <!-- Header -->
@@ -2517,7 +2767,7 @@
           <div class="gantt-label">
             <span class="gantt-tier t2">T2</span>
             <div>
-              <div class="name">Home Movers</div>
+              <div class="name">Appointments</div>
               <div class="sub">Tier 2 · Scale</div>
             </div>
           </div>
@@ -2620,6 +2870,85 @@
         <div class="gantt-legend-item"><span class="gantt-legend-dot t2"></span>Tier 2 · Scale</div>
         <div class="gantt-legend-item"><span class="gantt-legend-dot t3"></span>Tier 3 · Long Tail</div>
         <div class="gantt-legend-item"><span class="gantt-legend-dot t4"></span>Phase 04 · Sweep</div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== VALUE MAP ===== -->
+<section class="valuemap" id="value-map">
+  <div class="container">
+    <span class="section-eyebrow">Value Map</span>
+    <h2 class="section-title">Where the value lands.</h2>
+    <p class="section-lead">Each intent plotted by delivery date and OPEX impact. The further right, the later the build. The further up, the bigger the prize. Bubble size shows 2026 interaction volume.</p>
+
+    <div class="scatter-card">
+      <div class="scatter-head">
+        <div>
+          <div class="scatter-head-title">OPEX Impact vs Delivery Date</div>
+          <div class="scatter-head-sub">28 intents · £24.9m total OPEX impact · plotted by go-live quarter</div>
+        </div>
+        <div class="scatter-legend">
+          <span class="scatter-legend-item"><span class="dot vm-brand"></span>Virgin Media</span>
+          <span class="scatter-legend-item"><span class="dot o2-brand"></span>O2</span>
+        </div>
+      </div>
+
+      <div class="scatter-wrap">
+        <div class="scatter-yaxis">
+          <span>£3.5m</span>
+          <span>£3.0m</span>
+          <span>£2.5m</span>
+          <span>£2.0m</span>
+          <span>£1.5m</span>
+          <span>£1.0m</span>
+          <span>£0.5m</span>
+          <span>£0</span>
+        </div>
+        <div class="scatter-plot" id="scatter-plot">
+          <!-- gridlines -->
+          <div class="scatter-gridlines">
+            <div class="grid-h"></div><div class="grid-h"></div><div class="grid-h"></div>
+            <div class="grid-h"></div><div class="grid-h"></div><div class="grid-h"></div>
+            <div class="grid-h"></div>
+          </div>
+          <div class="scatter-vlines">
+            <div class="grid-v"></div><div class="grid-v"></div><div class="grid-v"></div>
+            <div class="grid-v"></div><div class="grid-v"></div><div class="grid-v"></div>
+          </div>
+          <!-- bubbles get injected here -->
+        </div>
+      </div>
+      <div class="scatter-xaxis">
+        <span>Q3 2026</span>
+        <span>Q4 2026</span>
+        <span>Q1 2027</span>
+        <span>Q2 2027</span>
+        <span>Q3 2027</span>
+        <span>Q4 2027</span>
+      </div>
+
+      <div class="scatter-yaxis-label">OPEX Impact (£)</div>
+      <div class="scatter-xaxis-label">Delivery Date (ETA)</div>
+
+      <div class="scatter-tooltip" id="scatter-tooltip"></div>
+    </div>
+
+    <div class="scatter-insights">
+      <div class="insight">
+        <div class="insight-num">£4.6m</div>
+        <div class="insight-lbl">Q3 2026 launch — earliest, biggest first wins</div>
+      </div>
+      <div class="insight">
+        <div class="insight-num">£3.2m</div>
+        <div class="insight-lbl">VM Retentions — single largest OPEX prize</div>
+      </div>
+      <div class="insight">
+        <div class="insight-num">£15.6m</div>
+        <div class="insight-lbl">2027 OPEX impact — the scale year</div>
       </div>
     </div>
   </div>
@@ -2995,6 +3324,98 @@
 
   const barContainer = document.getElementById('opex-bars');
   if (barContainer) barObserver.observe(barContainer);
+
+  // ===== Scatter chart (Value Map) =====
+  const scatterData = [
+    { brand:'O2', name:'Billing & Payments', eta:'Q3 2026', opex:2.30, vol:1045896 },
+    { brand:'O2', name:'Account', eta:'Q4 2026', opex:1.29, vol:588416 },
+    { brand:'O2', name:'Joining & Upgrading', eta:'Q3 2026', opex:0.98, vol:444120 },
+    { brand:'O2', name:'Device, SIMs & Accessories', eta:'Q4 2026', opex:0.87, vol:395020 },
+    { brand:'O2', name:'Cancellations', eta:'Q4 2027', opex:0.70, vol:320276 },
+    { brand:'O2', name:'Network Coverage & International', eta:'Q1 2027', opex:0.69, vol:312664 },
+    { brand:'O2', name:'Products', eta:'Q4 2026', opex:0.57, vol:260764 },
+    { brand:'O2', name:'Orders & Returns', eta:'Q4 2026', opex:0.52, vol:234252 },
+    { brand:'O2', name:'Additional Support', eta:'Q3 2027', opex:0.22, vol:100020 },
+    { brand:'O2', name:'Data & Usage', eta:'Q4 2026', opex:0.14, vol:64704 },
+    { brand:'VM', name:'Retentions', eta:'Q4 2027', opex:3.17, vol:1441608 },
+    { brand:'VM', name:'Faults', eta:'Q3 2027', opex:2.52, vol:899320 },
+    { brand:'VM', name:'Package Change', eta:'Q3 2027', opex:1.76, vol:800712 },
+    { brand:'VM', name:'Mobile Queries', eta:'Q1 2027', opex:1.24, vol:565784 },
+    { brand:'VM', name:'New Acquisitions', eta:'Q1 2027', opex:1.16, vol:525476 },
+    { brand:'VM', name:'Billing', eta:'Q3 2026', opex:0.93, vol:425000 },
+    { brand:'VM', name:'Payment', eta:'Q4 2027', opex:0.91, vol:415908 },
+    { brand:'VM', name:'PIC', eta:'Q4 2027', opex:0.67, vol:304412 },
+    { brand:'VM', name:'Account', eta:'Q3 2027', opex:0.60, vol:271800 },
+    { brand:'VM', name:'Moving Home', eta:'Q3 2027', opex:0.58, vol:262000 },
+    { brand:'VM', name:'Additional Support', eta:'Q1 2027', opex:0.42, vol:192752 },
+    { brand:'VM', name:'Appointments', eta:'Q3 2026', opex:0.36, vol:161764 },
+    { brand:'VM', name:'Orders and Returns', eta:'Q2 2027', opex:0.35, vol:160220 },
+    { brand:'VM', name:'Essential Broadband', eta:'Q2 2027', opex:0.30, vol:135552 },
+    { brand:'VM', name:'Activation', eta:'Q3 2027', opex:0.18, vol:81028 },
+    { brand:'VM', name:'Complaints', eta:'Q4 2027', opex:0.14, vol:62588 },
+    { brand:'VM', name:'Volt', eta:'Q2 2027', opex:0.03, vol:14024 },
+    { brand:'VM', name:'General', eta:'Q4 2026', opex:1.32, vol:600000 }
+  ];
+
+  const quarters = ['Q3 2026','Q4 2026','Q1 2027','Q2 2027','Q3 2027','Q4 2027'];
+  const yMax = 3.5;
+  const plot = document.getElementById('scatter-plot');
+  const tip = document.getElementById('scatter-tooltip');
+
+  function renderScatter() {
+    if (!plot) return;
+    plot.querySelectorAll('.bubble').forEach(b => b.remove());
+
+    scatterData.forEach((d, i) => {
+      const xIdx = quarters.indexOf(d.eta);
+      if (xIdx < 0) return;
+      // Center of column: each column takes 1/6 of width
+      const xPct = (xIdx + 0.5) / quarters.length * 100;
+      // Y axis: 0 at bottom, yMax at top. We position from bottom using "bottom" CSS
+      const yPct = (d.opex / yMax) * 100;
+
+      // Bubble size based on volume (sqrt scaling for area)
+      const minSize = 14;
+      const maxSize = 56;
+      const maxVol = 1500000;
+      const size = minSize + (Math.sqrt(d.vol / maxVol)) * (maxSize - minSize);
+
+      const b = document.createElement('div');
+      b.className = 'bubble ' + (d.brand === 'VM' ? 'vm' : 'o2');
+      b.style.left = xPct + '%';
+      b.style.bottom = yPct + '%';
+      b.style.width = size + 'px';
+      b.style.height = size + 'px';
+      b.style.animationDelay = (i * 30) + 'ms';
+
+      b.addEventListener('mouseenter', (e) => {
+        tip.innerHTML = `<strong>${d.name}</strong>
+          <div class="row"><span>Brand</span><span>${d.brand}</span></div>
+          <div class="row"><span>Delivery</span><span>${d.eta}</span></div>
+          <div class="row"><span>OPEX impact</span><span>£${d.opex.toFixed(2)}m</span></div>
+          <div class="row"><span>Volume</span><span>${(d.vol/1000).toFixed(0)}k</span></div>`;
+        const rect = plot.getBoundingClientRect();
+        const bRect = b.getBoundingClientRect();
+        tip.style.left = (bRect.left - rect.left + bRect.width/2) + 'px';
+        tip.style.top = (bRect.top - rect.top) + 'px';
+        tip.classList.add('visible');
+      });
+      b.addEventListener('mouseleave', () => tip.classList.remove('visible'));
+
+      plot.appendChild(b);
+    });
+  }
+
+  // Render scatter when it scrolls into view
+  const scatterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        renderScatter();
+        scatterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  if (plot) scatterObserver.observe(plot);
 </script>
 
 </body>
