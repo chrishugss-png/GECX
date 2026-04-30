@@ -729,61 +729,287 @@
   }
 
   /* ====== OPERATING MODEL ====== */
-  .ops-grid {
+  .om-lead-line {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 56px;
+    padding-top: 16px;
+    border-top: 3px solid;
+    border-image: var(--gradient-volt) 1;
+    max-width: 720px;
+  }
+  .om-lead-text {
+    font-size: 17px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .squads {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
-    margin-top: 40px;
+    margin-bottom: 32px;
   }
-  @media (max-width: 900px) { .ops-grid { grid-template-columns: 1fr; } }
-  .ops-card {
-    padding: 36px;
-    border-radius: 20px;
-    color: white;
-    position: relative;
+  @media (max-width: 1000px) { .squads { grid-template-columns: 1fr; } }
+
+  .squad {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 18px;
     overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
   }
-  .ops-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at top right, rgba(255,255,255,0.2) 0%, transparent 60%);
-    pointer-events: none;
+  .squad:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); }
+
+  .squad-banner {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    color: white;
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
   }
-  .ops-vmo2 { background: var(--vm-red); }
-  .ops-google { background: linear-gradient(135deg, var(--volt-magenta) 0%, var(--volt-purple) 100%); }
-  .ops-accenture { background: var(--o2-blue); }
-  .ops-card h3 {
-    font-size: 24px;
-    margin-bottom: 8px;
-    position: relative;
-    z-index: 1;
+  .squad-banner-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 22px;
+    flex-shrink: 0;
   }
-  .ops-role {
+  .squad-banner-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.18);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+  .squad-banner-num {
+    font-size: 22px;
+    letter-spacing: 0.04em;
+  }
+  .squad-banner-tag {
+    flex: 1;
+    padding: 18px 22px;
     font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    opacity: 0.9;
-    margin-bottom: 20px;
     font-weight: 700;
-    position: relative;
-    z-index: 1;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: rgba(0,0,0,0.18);
   }
-  .ops-card ul {
-    list-style: none;
-    position: relative;
-    z-index: 1;
-  }
-  .ops-card li {
-    padding: 8px 0;
-    font-size: 15px;
-    opacity: 0.95;
+
+  .squad-1 .squad-banner { background: linear-gradient(90deg, #4A148C 0%, #6A0DAD 100%); }
+  .squad-2 .squad-banner { background: linear-gradient(90deg, #0019A5 0%, #1F2A8A 100%); }
+
+  .squad-intents {
     display: flex;
     align-items: center;
     gap: 10px;
+    padding: 14px 22px;
+    background: var(--bg-soft);
+    border-bottom: 1px solid var(--line);
+    font-size: 13.5px;
+    color: var(--ink-soft);
   }
-  .ops-card li::before {
-    content: '→';
+  .squad-intents .target-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 100px;
+    background: rgba(106, 13, 173, 0.12);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+  .squad-2 .squad-intents .target-icon { background: rgba(0, 25, 165, 0.12); }
+  .squad-intents strong {
+    color: var(--ink);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    margin-right: 4px;
+  }
+  .squad-intents .core {
+    color: var(--volt-magenta);
+    font-weight: 800;
+  }
+
+  .partners {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    padding: 24px 16px;
+  }
+  @media (max-width: 600px) { .partners { grid-template-columns: 1fr; gap: 16px; } }
+
+  .partner {
+    padding: 0 12px;
+    border-right: 1px solid var(--line);
+  }
+  .partner:last-child { border-right: none; }
+  @media (max-width: 600px) { .partner { border-right: none; border-bottom: 1px solid var(--line); padding-bottom: 16px; } }
+  @media (max-width: 600px) { .partner:last-child { border-bottom: none; } }
+
+  .partner-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .partner-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 100px;
+    display: grid;
+    place-items: center;
+    color: white;
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .partner-avatar.google { background: var(--volt-purple); }
+  .partner-avatar.accenture { background: var(--volt-magenta); }
+  .partner-avatar.vmo2 { background: var(--o2-cyan); }
+  .partner-name {
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .partner-name.google { color: var(--volt-purple); }
+  .partner-name.accenture { color: var(--volt-magenta); }
+  .partner-name.vmo2 { color: var(--o2-cyan); }
+
+  .partner-roles {
+    list-style: none;
+  }
+  .partner-roles li {
+    padding: 4px 0;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    position: relative;
+    padding-left: 14px;
+  }
+  .partner-roles li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 4px;
+    height: 4px;
+    border-radius: 100px;
+    background: var(--ink-mute);
+  }
+
+  /* Ways of Working / Governance / One Goal */
+  .om-bottom {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 1000px) { .om-bottom { grid-template-columns: 1fr; gap: 28px; } }
+
+  .om-block {
+    display: flex;
+    gap: 18px;
+  }
+  .om-block-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 100px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+  .om-block-icon.wow { background: rgba(106, 13, 173, 0.1); color: var(--volt-purple); }
+  .om-block-icon.gov { background: rgba(0, 25, 165, 0.1); color: var(--o2-blue); }
+  .om-block-icon.goal { background: rgba(46, 196, 182, 0.12); color: #2EC4B6; }
+
+  .om-block-content {
+    flex: 1;
+    min-width: 0;
+  }
+  .om-block-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .om-block-title.wow { color: var(--volt-purple); }
+  .om-block-title.gov { color: var(--o2-blue); }
+  .om-block-title.goal { color: #2EC4B6; }
+
+  .om-block ul {
+    list-style: none;
+  }
+  .om-block li {
+    padding: 4px 0;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.4;
+  }
+  .om-block li svg {
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+  .om-goal-text {
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  /* Principle line at bottom */
+  .om-principle {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 28px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+  }
+  .om-principle-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(255, 20, 147, 0.1);
+    display: grid;
+    place-items: center;
+    color: var(--volt-magenta);
+    flex-shrink: 0;
+  }
+  .om-principle-label {
+    font-family: 'Sora', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    flex-shrink: 0;
+  }
+  .om-principle-text {
+    font-size: 15px;
+    color: var(--ink-soft);
+    flex: 1;
+    min-width: 0;
+  }
+  .om-principle-text em {
+    font-style: normal;
+    color: var(--volt-magenta);
     font-weight: 700;
   }
 
@@ -2175,46 +2401,228 @@
 <hr class="divider">
 
 <!-- ===== OPERATING MODEL ===== -->
-<section>
+<section id="operating-model">
   <div class="container">
     <span class="section-eyebrow">Operating Model</span>
-    <h2 class="section-title">Three partners. One mission.</h2>
-    <p class="section-lead">A clear split of ownership across VMO2, Google, and Accenture - so nothing falls between the cracks.</p>
+    <h2 class="section-title">Squad one is led by Google to set the design patterns, with a fast-follower squad to accelerate delivery.</h2>
+    <div class="om-lead-line">
+      <div class="om-lead-text">Two aligned squads. Clear roles. Shared ways of working. One goal — exceptional agentic CX at scale.</div>
+    </div>
 
-    <div class="ops-grid">
-      <div class="ops-card ops-vmo2">
-        <h3>VMO2 (CCAI)</h3>
-        <div class="ops-role">Product Owner</div>
-        <ul>
-          <li>Testing & validation</li>
-          <li>Joint SOP ownership</li>
-          <li>Product ownership</li>
-          <li>Long-term capability (TCX)</li>
-        </ul>
+    <div class="squads">
+
+      <!-- ====== SQUAD 1 ====== -->
+      <div class="squad squad-1">
+        <div class="squad-banner">
+          <div class="squad-banner-left">
+            <div class="squad-banner-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2 L14.39 8.26 L21 9.27 L16 14.14 L17.18 20.74 L12 17.77 L6.82 20.74 L8 14.14 L3 9.27 L9.61 8.26 Z"/>
+              </svg>
+            </div>
+            <span class="squad-banner-num">SQUAD 1</span>
+          </div>
+          <div class="squad-banner-tag">Google Led</div>
+        </div>
+
+        <div class="squad-intents">
+          <div class="target-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="9" stroke="#6A0DAD" stroke-width="2"/>
+              <circle cx="12" cy="12" r="5" stroke="#6A0DAD" stroke-width="2"/>
+              <circle cx="12" cy="12" r="1.5" fill="#6A0DAD"/>
+            </svg>
+          </div>
+          <span><strong>Intents:</strong> Mobile Billing, Upgrades & General <span class="core">= Core</span></span>
+        </div>
+
+        <div class="partners">
+          <div class="partner">
+            <div class="partner-head">
+              <div class="partner-avatar google">G</div>
+              <span class="partner-name google">Google</span>
+            </div>
+            <ul class="partner-roles">
+              <li>Delivery Exec</li>
+              <li>Lead Eng</li>
+              <li>Conv AI Eng x 2</li>
+              <li>AI Transform Lead</li>
+              <li>Google Security</li>
+            </ul>
+          </div>
+
+          <div class="partner">
+            <div class="partner-head">
+              <div class="partner-avatar accenture">A</div>
+              <span class="partner-name accenture">Accenture</span>
+            </div>
+            <ul class="partner-roles">
+              <li>UX Dev</li>
+              <li>Front End Dev</li>
+              <li>SOP</li>
+              <li>API Engineer</li>
+            </ul>
+          </div>
+
+          <div class="partner">
+            <div class="partner-head">
+              <div class="partner-avatar vmo2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
+                  <circle cx="12" cy="8" r="4"/>
+                  <path d="M4 22 C4 16 7 13 12 13 C17 13 20 16 20 22 Z"/>
+                </svg>
+              </div>
+              <span class="partner-name vmo2">VMO2</span>
+            </div>
+            <ul class="partner-roles">
+              <li>Product Owners</li>
+              <li>GECX Engineers</li>
+            </ul>
+          </div>
+        </div>
       </div>
 
-      <div class="ops-card ops-google">
-        <h3>Google</h3>
-        <div class="ops-role">Engineering Lead</div>
-        <ul>
-          <li>Engineering excellence</li>
-          <li>AI transformation</li>
-          <li>Architecture patterns</li>
-          <li>Squad 1 leadership</li>
-        </ul>
+      <!-- ====== SQUAD 2 ====== -->
+      <div class="squad squad-2">
+        <div class="squad-banner">
+          <div class="squad-banner-left">
+            <div class="squad-banner-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 17 C3 17 2 16 2 14 C2 12 3.5 11 5 11 L7 11 L9 7 L13 7 L17 3 L21 5 L19 9 L21 11 L21 13 L17 13 L15 17 Z" stroke="white" stroke-width="0.5" stroke-linejoin="round"/>
+                <circle cx="17" cy="7" r="1.2" fill="#0019A5"/>
+              </svg>
+            </div>
+            <span class="squad-banner-num">SQUAD 2</span>
+          </div>
+          <div class="squad-banner-tag">Fast Follower</div>
+        </div>
+
+        <div class="squad-intents">
+          <div class="target-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="9" stroke="#0019A5" stroke-width="2"/>
+              <circle cx="12" cy="12" r="5" stroke="#0019A5" stroke-width="2"/>
+              <circle cx="12" cy="12" r="1.5" fill="#0019A5"/>
+            </svg>
+          </div>
+          <span><strong>Intents:</strong> Fixed Billing, Movers, General & Care</span>
+        </div>
+
+        <div class="partners">
+          <div class="partner">
+            <div class="partner-head">
+              <div class="partner-avatar google">G</div>
+              <span class="partner-name google">Google</span>
+            </div>
+            <ul class="partner-roles">
+              <li>Lead Eng</li>
+              <li>Lead Dev</li>
+              <li>Lead AI Transform</li>
+              <li>Delivery Exec</li>
+            </ul>
+          </div>
+
+          <div class="partner">
+            <div class="partner-head">
+              <div class="partner-avatar accenture">A</div>
+              <span class="partner-name accenture">Accenture</span>
+            </div>
+            <ul class="partner-roles">
+              <li>Scrum Lead</li>
+              <li>SOP Designers</li>
+              <li>API Architects</li>
+              <li>AI Transformation Consultant</li>
+              <li>UX Lead</li>
+              <li>Front End Devs x 2</li>
+            </ul>
+          </div>
+
+          <div class="partner">
+            <div class="partner-head">
+              <div class="partner-avatar vmo2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
+                  <circle cx="12" cy="8" r="4"/>
+                  <path d="M4 22 C4 16 7 13 12 13 C17 13 20 16 20 22 Z"/>
+                </svg>
+              </div>
+              <span class="partner-name vmo2">VMO2</span>
+            </div>
+            <ul class="partner-roles">
+              <li>Product Owners</li>
+              <li>GECX Engineers x 2</li>
+            </ul>
+          </div>
+        </div>
       </div>
 
-      <div class="ops-card ops-accenture">
-        <h3>Accenture</h3>
-        <div class="ops-role">Light-touch Support</div>
-        <ul>
-          <li>SOP design support</li>
-          <li>UX collaboration</li>
-          <li>API enablement</li>
-          <li>Front-end delivery</li>
-        </ul>
+    </div>
+
+    <!-- Bottom panel: Ways of Working / Governance / One Goal -->
+    <div class="om-bottom">
+      <div class="om-block">
+        <div class="om-block-icon wow">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="8" r="3"/>
+            <circle cx="17" cy="8" r="2.5"/>
+            <path d="M3 19 C3 16 5 14 9 14 C13 14 15 16 15 19"/>
+            <path d="M14 14 C16 14 21 15 21 19"/>
+          </svg>
+        </div>
+        <div class="om-block-content">
+          <div class="om-block-title wow">Ways of Working</div>
+          <ul>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6A0DAD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="rgba(106,13,173,0.1)" stroke="none"/><path d="M8 12 L11 15 L16 9"/></svg>Shared standards & design patterns</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6A0DAD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="rgba(106,13,173,0.1)" stroke="none"/><path d="M8 12 L11 15 L16 9"/></svg>Common tooling & platform</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6A0DAD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="rgba(106,13,173,0.1)" stroke="none"/><path d="M8 12 L11 15 L16 9"/></svg>Agile delivery with regular syncs</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6A0DAD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="rgba(106,13,173,0.1)" stroke="none"/><path d="M8 12 L11 15 L16 9"/></svg>Knowledge share between squads</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="om-block">
+        <div class="om-block-icon gov">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+            <path d="M12 2 L20 6 V12 C20 17 16 20 12 22 C8 20 4 17 4 12 V6 Z"/>
+            <path d="M9 12 L11 14 L15 10" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="om-block-content">
+          <div class="om-block-title gov">Governance & Alignment</div>
+          <ul>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0019A5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="rgba(0,25,165,0.1)" stroke="none"/><path d="M8 12 L11 15 L16 9"/></svg>Joint steering & prioritisation</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0019A5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="rgba(0,25,165,0.1)" stroke="none"/><path d="M8 12 L11 15 L16 9"/></svg>Architecture review board</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0019A5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="rgba(0,25,165,0.1)" stroke="none"/><path d="M8 12 L11 15 L16 9"/></svg>Risk, security & compliance oversight</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0019A5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="rgba(0,25,165,0.1)" stroke="none"/><path d="M8 12 L11 15 L16 9"/></svg>Outcome & KPI tracking</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="om-block">
+        <div class="om-block-icon goal">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="9"/>
+            <circle cx="12" cy="12" r="5"/>
+            <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="om-block-content">
+          <div class="om-block-title goal">One Goal</div>
+          <p class="om-goal-text">Deliver connected, intelligent customer experiences — faster, better, together.</p>
+        </div>
       </div>
     </div>
+
+    <!-- Principle line -->
+    <div class="om-principle">
+      <div class="om-principle-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M13 2 L4 14 L11 14 L9 22 L20 10 L13 10 Z"/>
+        </svg>
+      </div>
+      <div class="om-principle-label">Principle:</div>
+      <div class="om-principle-text">One team. One architecture. Two squads. <em>Accelerating value.</em></div>
+    </div>
+
   </div>
 </section>
 
@@ -2261,7 +2669,7 @@
         <path d="M12 2 L20 6 V12 C20 17 16 20 12 22 C8 20 4 17 4 12 V6 Z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
         <path d="M9 12 L11 14 L15 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
       </svg>
-      <span>Critical</span>
+      <span>Critical for SLT</span>
     </div>
     <h2 class="section-title">Designed for control, auditability, and safety.</h2>
     <p class="section-lead">Agentic AI without guardrails is a liability. Every action is permissioned, every decision is logged, every high-risk step has a human in the loop.</p>
