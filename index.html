@@ -1013,6 +1013,245 @@
     font-weight: 700;
   }
 
+  /* ====== VOICE & DIGITAL ALIGNMENT ====== */
+  .alignment {
+    background: var(--bg-soft);
+  }
+  .alignment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+    position: relative;
+  }
+  @media (max-width: 1000px) { .alignment-grid { grid-template-columns: 1fr; } }
+
+  .team-card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 36px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-soft); }
+
+  .team-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+  }
+  .team-voice::before { background: linear-gradient(90deg, #FF8800 0%, #E10A0A 100%); }
+  .team-digital::before { background: linear-gradient(90deg, #0019A5 0%, #00A8E1 100%); }
+
+  .team-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .team-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    color: white;
+    flex-shrink: 0;
+  }
+  .team-icon.voice { background: linear-gradient(135deg, #FF8800 0%, #E10A0A 100%); }
+  .team-icon.digital { background: linear-gradient(135deg, #0019A5 0%, #00A8E1 100%); }
+
+  .team-meta .label {
+    font-family: 'Sora', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 2px;
+  }
+  .team-meta .name {
+    font-family: 'Sora', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+
+  .team-card .headline {
+    font-family: 'Sora', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+  .team-card .body {
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
+  .team-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .team-pill {
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 700;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+  }
+  .team-voice .team-pill { background: rgba(225,10,10,0.06); border-color: rgba(225,10,10,0.18); color: var(--vm-red-deep); }
+  .team-digital .team-pill { background: rgba(0,25,165,0.06); border-color: rgba(0,25,165,0.18); color: var(--o2-blue); }
+
+  /* Connector between cards */
+  .alignment-connector {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 100px;
+    background: white;
+    border: 2px solid var(--line);
+    display: grid;
+    place-items: center;
+    color: var(--volt-magenta);
+    z-index: 2;
+    box-shadow: var(--shadow-soft);
+  }
+  @media (max-width: 1000px) { .alignment-connector { display: none; } }
+
+  /* Workflow strip */
+  .workflow {
+    margin-top: 32px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: auto 1fr auto 1fr;
+    gap: 24px;
+    align-items: center;
+  }
+  @media (max-width: 800px) { .workflow { grid-template-columns: 1fr; gap: 16px; text-align: left; } }
+
+  .workflow-label {
+    font-family: 'Sora', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--volt-magenta);
+    white-space: nowrap;
+  }
+  .workflow-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .workflow-step .num {
+    width: 32px;
+    height: 32px;
+    border-radius: 100px;
+    display: grid;
+    place-items: center;
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    color: white;
+    flex-shrink: 0;
+  }
+  .workflow-step.s1 .num { background: linear-gradient(135deg, #FF8800 0%, #E10A0A 100%); }
+  .workflow-step.s2 .num { background: linear-gradient(135deg, #0019A5 0%, #00A8E1 100%); }
+  .workflow-step .text {
+    font-size: 14px;
+    color: var(--ink);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .workflow-step .text strong { color: var(--ink); }
+  .workflow-arrow {
+    color: var(--ink-mute);
+    font-size: 24px;
+    text-align: center;
+  }
+  @media (max-width: 800px) { .workflow-arrow { transform: rotate(90deg); } }
+
+  /* Special project callout */
+  .special-project {
+    margin-top: 24px;
+    background: linear-gradient(135deg, #4A148C 0%, #6A0DAD 50%, #E10A0A 100%);
+    border-radius: 20px;
+    padding: 32px 36px;
+    color: white;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 28px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .special-project::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 90% 20%, rgba(255,255,255,0.15) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  @media (max-width: 800px) { .special-project { grid-template-columns: 1fr; gap: 16px; } }
+
+  .sp-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    position: relative;
+    z-index: 1;
+  }
+  .sp-text {
+    font-size: 16px;
+    line-height: 1.45;
+    position: relative;
+    z-index: 1;
+  }
+  .sp-text strong { font-weight: 800; }
+  .sp-google {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: white;
+    color: var(--volt-purple);
+    border-radius: 100px;
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    position: relative;
+    z-index: 1;
+  }
+
   /* ====== RISKS ====== */
   .risks-grid {
     display: grid;
@@ -2021,6 +2260,7 @@
     <ul class="nav-links">
       <li><a href="#principles">Principles</a></li>
       <li><a href="#opex">OPEX</a></li>
+      <li><a href="#alignment">Alignment</a></li>
       <li><a href="#tiers">Intent Roadmap</a></li>
       <li><a href="#delivery">Delivery</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
@@ -2120,7 +2360,7 @@
   <div class="container">
     <span class="section-eyebrow">Strategic Principles</span>
     <h2 class="section-title">Four ways we get to green.</h2>
-    <p class="section-lead">Every agent we onboard follows the same playbook - built for volume, multimodal, designed to act, and governed by readiness.</p>
+    <p class="section-lead">Every agent we onboard follows the same playbook - built for volume, designed to act, and governed by readiness.</p>
 
     <div class="principle-grid">
       <div class="principle">
@@ -2238,6 +2478,114 @@
 
 <hr class="divider">
 
+<!-- ===== VOICE & DIGITAL ALIGNMENT ===== -->
+<section class="alignment" id="alignment">
+  <div class="container">
+    <span class="section-eyebrow">Build Alignment</span>
+    <h2 class="section-title">Voice & Digital, building together.</h2>
+    <p class="section-lead">A two-team approach. Voice builds the foundation of the agentic agents. Digital builds the shift from static interfaces to Generative UI — where the interface itself is an active participant in the agent's reasoning.</p>
+
+    <div class="alignment-grid">
+
+      <!-- ===== VOICE ===== -->
+      <div class="team-card team-voice">
+        <div class="team-head">
+          <div class="team-icon voice">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2 a3 3 0 0 0 -3 3 v6 a3 3 0 0 0 6 0 V5 a3 3 0 0 0 -3 -3 Z"/>
+              <path d="M19 10 v1 a7 7 0 0 1 -14 0 v-1"/>
+              <line x1="12" y1="18" x2="12" y2="22"/>
+              <line x1="8" y1="22" x2="16" y2="22"/>
+            </svg>
+          </div>
+          <div class="team-meta">
+            <div class="label">Team · 01</div>
+            <div class="name">Voice</div>
+          </div>
+        </div>
+        <div class="headline">The foundation of the agentic agents.</div>
+        <div class="body">Voice owns IVR via AWS and Sierra — building the underlying agent reasoning, intent detection, and conversation flows that power every interaction across the estate.</div>
+        <div class="team-pills">
+          <span class="team-pill">IVR</span>
+          <span class="team-pill">AWS</span>
+          <span class="team-pill">Sierra</span>
+          <span class="team-pill">Agent Foundation</span>
+        </div>
+      </div>
+
+      <!-- Connector between cards -->
+      <div class="alignment-connector">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12 H19"/>
+          <path d="M13 6 L19 12 L13 18"/>
+          <path d="M19 12 H5"/>
+          <path d="M11 6 L5 12 L11 18"/>
+        </svg>
+      </div>
+
+      <!-- ===== DIGITAL ===== -->
+      <div class="team-card team-digital">
+        <div class="team-head">
+          <div class="team-icon digital">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="13" rx="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+              <circle cx="9" cy="10" r="1.5" fill="currentColor" stroke="none"/>
+              <line x1="13" y1="9" x2="18" y2="9"/>
+              <line x1="13" y1="12" x2="17" y2="12"/>
+            </svg>
+          </div>
+          <div class="team-meta">
+            <div class="label">Team · 02</div>
+            <div class="name">Digital</div>
+          </div>
+        </div>
+        <div class="headline">From static interfaces to Generative UI.</div>
+        <div class="body">Digital handles every web, app, and messaging interaction — building GenUI wrappers where the interface itself becomes an active participant in the agent's reasoning, not just a passive display. Along with the deployment of Vertex AI.</div>
+        <div class="team-pills">
+          <span class="team-pill">Web · App · Messaging</span>
+          <span class="team-pill">Generative UI</span>
+          <span class="team-pill">Multimodal</span>
+          <span class="team-pill">Vertex AI</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Workflow strip -->
+    <div class="workflow">
+      <div class="workflow-label">⚡ Workflow</div>
+      <div class="workflow-step s1">
+        <div class="num">1</div>
+        <div class="text"><strong>Voice</strong> creates the agent</div>
+      </div>
+      <div class="workflow-arrow">→</div>
+      <div class="workflow-step s2">
+        <div class="num">2</div>
+        <div class="text"><strong>Digital</strong> builds the Generative UI wrapper</div>
+      </div>
+    </div>
+
+    <!-- Special project callout -->
+    <div class="special-project">
+      <span class="sp-badge">★ Special Project</span>
+      <div class="sp-text">
+        <strong>Upgrades, from the ground up.</strong> The Digital team is building a single agent for upgrades end-to-end — collaborating directly with Google to understand and unpack the complexities of agentic delivery.
+      </div>
+      <span class="sp-google">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L14.39 8.26 L21 9.27 L16 14.14 L17.18 20.74 L12 17.77 L6.82 20.74 L8 14.14 L3 9.27 L9.61 8.26 Z"/></svg>
+        With Google
+      </span>
+    </div>
+
+    <p class="section-lead" style="margin-top: 32px; margin-bottom: 0; font-size: 16px;">Objective: multimodal, multi-channel consistency. One brain. Every touchpoint.</p>
+
+  </div>
+</section>
+
+<hr class="divider">
+
 <!-- ===== OPERATING MODEL ===== -->
 <section id="operating-model">
   <div class="container">
@@ -2343,7 +2691,7 @@
               <circle cx="12" cy="12" r="1.5" fill="#0019A5"/>
             </svg>
           </div>
-          <span><strong>Intents:</strong> Fixed Billing, Appointments & Quick Start, General & Care</span>
+          <span><strong>Intents:</strong> Fixed Billing, Appointments, General & Care</span>
         </div>
 
         <div class="partners">
@@ -2464,8 +2812,6 @@
   </div>
 </section>
 
-<hr class="divider">
-
 <!-- ===== RISKS ===== -->
 <section style="background: var(--bg-soft);">
   <div class="container">
@@ -2537,7 +2883,7 @@
           <p>Volume + moderate complexity. Squad 2's fast-follower remit - deeper integrations and personalised flows.</p>
           <div class="tier-tags">
             <span class="tier-tag">Fixed Billing</span>
-            <span class="tier-tag">Appointments & Quick Start</span>
+            <span class="tier-tag">Appointments</span>
             <span class="tier-tag">General Care</span>
           </div>
         </div>
@@ -2584,7 +2930,7 @@
         <div class="delivery-step">STAGE 01</div>
         <h3>SOPs</h3>
         <p>Conversational flows, journey maps, and escalation logic - aligned to compliance from day one.</p>
-        <span class="delivery-owner">CCAI + Accenture + TCX</span>
+        <span class="delivery-owner">CCAI + Accenture</span>
       </div>
 
       <div class="delivery-card">
@@ -2619,7 +2965,7 @@
         <div class="delivery-step">STAGE 06</div>
         <h3>Testing</h3>
         <p>Functional, conversational, performance, containment - validated before any agent goes live.</p>
-        <span class="delivery-owner">CCAI + TCS + TCX</span>
+        <span class="delivery-owner">CCAI</span>
       </div>
     </div>
   </div>
@@ -2655,7 +3001,7 @@
         <ul>
           <li>Roll out Tier 2 intents</li>
           <li>Fixed Billing onboarded</li>
-          <li>Appointments & Quick Start journey live</li>
+          <li>Appointments journey live</li>
           <li>Parallel squad execution</li>
           <li>Cross-product orchestration</li>
         </ul>
@@ -2691,7 +3037,7 @@
     <!-- ===== When each intent goes live (sub-section, formerly Value Map) ===== -->
     <div class="roadmap-gantt-block">
       <div class="roadmap-gantt-head">
-        <h3>Delivery Timeline by Intent.</h3>
+        <h3>When each intent goes live.</h3>
         <p>A half-by-half view of the agentic roadmap — sequencing the work so value compounds: foundation first, scale next, then long-tail and full coverage.</p>
       </div>
     <div class="gantt">
@@ -2767,7 +3113,7 @@
           <div class="gantt-label">
             <span class="gantt-tier t2">T2</span>
             <div>
-              <div class="name">Appointments & Quick Start</div>
+              <div class="name">Appointments</div>
               <div class="sub">Tier 2 · Scale</div>
             </div>
           </div>
@@ -2881,7 +3227,7 @@
 <!-- ===== VALUE MAP ===== -->
 <section class="valuemap" id="value-map">
   <div class="container">
-    <span class="section-eyebrow">Value Distribution</span>
+    <span class="section-eyebrow">Value Map</span>
     <h2 class="section-title">Where the value lands.</h2>
     <p class="section-lead">Each intent plotted by delivery date and OPEX impact. The further right, the later the build. The further up, the bigger the prize. Bubble size shows 2026 interaction volume.</p>
 
@@ -3049,11 +3395,11 @@
       </div>
       <div class="kpi">
         <div class="kpi-value">CSAT</div>
-        <div class="kpi-label">Customer Satisfaction</div>
+        <div class="kpi-label">Customer Satisfaction/Trust</div>
       </div>
       <div class="kpi">
         <div class="kpi-value">↑</div>
-        <div class="kpi-label">Customer Trust</div>
+        <div class="kpi-label">Containment Rate</div>
       </div>
       <div class="kpi">
         <div class="kpi-value">↓</div>
@@ -3258,7 +3604,7 @@
     { brand: 'VM', name: 'Account', volume: 271800 },
     { brand: 'O2', name: 'Orders & Returns', volume: 234252 },
     { brand: 'VM', name: 'Additional Support', volume: 192752 },
-    { brand: 'VM', name: 'Appointments & Quick Start', volume: 161764 },
+    { brand: 'VM', name: 'Appointments', volume: 161764 },
     { brand: 'VM', name: 'Orders and Returns', volume: 160220 },
     { brand: 'VM', name: 'Essential Broadband', volume: 135552 },
     { brand: 'O2', name: 'Additional Support', volume: 100020 },
@@ -3348,7 +3694,7 @@
     { brand:'VM', name:'Account', eta:'Q3 2027', opex:0.60, vol:271800 },
     { brand:'VM', name:'Moving Home', eta:'Q3 2027', opex:0.58, vol:262000 },
     { brand:'VM', name:'Additional Support', eta:'Q1 2027', opex:0.42, vol:192752 },
-    { brand:'VM', name:'Appointments & Quick Start', eta:'Q3 2026', opex:0.36, vol:161764 },
+    { brand:'VM', name:'Appointments', eta:'Q3 2026', opex:0.36, vol:161764 },
     { brand:'VM', name:'Orders and Returns', eta:'Q2 2027', opex:0.35, vol:160220 },
     { brand:'VM', name:'Essential Broadband', eta:'Q2 2027', opex:0.30, vol:135552 },
     { brand:'VM', name:'Activation', eta:'Q3 2027', opex:0.18, vol:81028 },
