@@ -728,6 +728,154 @@
     font-weight: 600;
   }
 
+  /* ====== BUILD OBJECTIVE (VIDEO) ====== */
+  .build-objective {
+    background: linear-gradient(160deg, #0F0F12 0%, #1A1A22 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .build-objective::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 85% 20%, rgba(255,20,147,0.12) 0%, transparent 50%),
+                      radial-gradient(circle at 15% 85%, rgba(0,168,225,0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .build-objective .container { position: relative; z-index: 1; }
+  .build-objective .section-eyebrow {
+    background: rgba(255,255,255,0.08);
+    color: #FFD700;
+  }
+  .build-objective .section-title { color: white; }
+  .build-objective .section-lead { color: rgba(255,255,255,0.75); }
+
+  .bo-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 48px;
+    margin-top: 40px;
+    align-items: center;
+  }
+  @media (max-width: 1000px) { .bo-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+  .bo-video {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.06);
+    aspect-ratio: 16/9;
+  }
+  .bo-video video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+  .bo-video-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 100px;
+    font-family: 'Sora', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: white;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .bo-video-badge .live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 100px;
+    background: #FF1493;
+    box-shadow: 0 0 0 4px rgba(255,20,147,0.25);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(255,20,147,0.25); }
+    50% { box-shadow: 0 0 0 8px rgba(255,20,147,0.05); }
+  }
+
+  .bo-content h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 800;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+  .bo-content h3 em {
+    font-style: normal;
+    background: linear-gradient(90deg, #FF1493 0%, #00A8E1 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bo-content > p {
+    color: rgba(255,255,255,0.75);
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .bo-pillars {
+    display: grid;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .bo-pillar {
+    display: flex;
+    gap: 14px;
+    padding: 16px 18px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .bo-pillar:hover {
+    border-color: rgba(255,20,147,0.4);
+    background: rgba(255,255,255,0.06);
+  }
+  .bo-pillar-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    color: white;
+    flex-shrink: 0;
+  }
+  .bo-pillar-icon.p1 { background: linear-gradient(135deg, #FF1493 0%, #6A0DAD 100%); }
+  .bo-pillar-icon.p2 { background: linear-gradient(135deg, #0019A5 0%, #00A8E1 100%); }
+  .bo-pillar-icon.p3 { background: linear-gradient(135deg, #FF8800 0%, #E10A0A 100%); }
+  .bo-pillar-text { flex: 1; min-width: 0; }
+  .bo-pillar-text .pt {
+    font-family: 'Sora', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 2px;
+  }
+  .bo-pillar-text .ps {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.4;
+  }
+
   /* ====== OPERATING MODEL ====== */
   .om-lead-line {
     display: flex;
@@ -1133,21 +1281,28 @@
   }
   @media (max-width: 1000px) { .alignment-connector { display: none; } }
 
-  /* Workflow strip */
+  /* Workflow / Synergy diagram */
   .workflow {
     margin-top: 32px;
     background: white;
     border: 1px solid var(--line);
     border-radius: 20px;
-    padding: 28px 32px;
-    display: grid;
-    grid-template-columns: auto 1fr auto 1fr;
-    gap: 24px;
-    align-items: center;
+    padding: 32px 36px;
+    position: relative;
+    overflow: hidden;
   }
-  @media (max-width: 800px) { .workflow { grid-template-columns: 1fr; gap: 16px; text-align: left; } }
-
+  .workflow-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
   .workflow-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     font-family: 'Sora', sans-serif;
     font-size: 12px;
     font-weight: 800;
@@ -1156,38 +1311,195 @@
     color: var(--volt-magenta);
     white-space: nowrap;
   }
-  .workflow-step {
+  .workflow-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .workflow-title em {
+    font-style: normal;
+    background: linear-gradient(90deg, #FF8800 0%, #E10A0A 50%, #0019A5 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .synergy {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    align-items: stretch;
+    position: relative;
+  }
+  @media (max-width: 800px) {
+    .synergy { grid-template-columns: 1fr; }
+  }
+
+  .synergy-track {
+    padding: 22px 24px;
+    border-radius: 16px;
+    position: relative;
+    border: 1.5px solid;
+  }
+  .synergy-track.voice {
+    background: linear-gradient(135deg, rgba(255,136,0,0.06) 0%, rgba(225,10,10,0.06) 100%);
+    border-color: rgba(225,10,10,0.2);
+  }
+  .synergy-track.digital {
+    background: linear-gradient(135deg, rgba(0,25,165,0.06) 0%, rgba(0,168,225,0.06) 100%);
+    border-color: rgba(0,25,165,0.2);
+  }
+  .synergy-track-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .synergy-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-family: 'Sora', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: white;
+  }
+  .synergy-pill.voice { background: linear-gradient(135deg, #FF8800 0%, #E10A0A 100%); }
+  .synergy-pill.digital { background: linear-gradient(135deg, #0019A5 0%, #00A8E1 100%); }
+  .synergy-stage-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ink-mute);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .synergy-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .synergy-step {
     display: flex;
     align-items: center;
     gap: 12px;
-  }
-  .workflow-step .num {
-    width: 32px;
-    height: 32px;
-    border-radius: 100px;
-    display: grid;
-    place-items: center;
-    font-family: 'Sora', sans-serif;
-    font-weight: 800;
-    font-size: 14px;
-    color: white;
-    flex-shrink: 0;
-  }
-  .workflow-step.s1 .num { background: linear-gradient(135deg, #FF8800 0%, #E10A0A 100%); }
-  .workflow-step.s2 .num { background: linear-gradient(135deg, #0019A5 0%, #00A8E1 100%); }
-  .workflow-step .text {
+    padding: 10px 14px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--line);
     font-size: 14px;
     color: var(--ink);
     font-weight: 600;
-    line-height: 1.4;
   }
-  .workflow-step .text strong { color: var(--ink); }
-  .workflow-arrow {
-    color: var(--ink-mute);
-    font-size: 24px;
+  .synergy-step .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+  .voice .synergy-step .dot { background: #E10A0A; }
+  .digital .synergy-step .dot { background: #0019A5; }
+
+  /* Convergence hub in the middle */
+  .synergy-hub {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 28px;
+    position: relative;
+  }
+  @media (max-width: 800px) {
+    .synergy-hub { padding: 18px 0; flex-direction: row; gap: 12px; }
+  }
+
+  /* Horizontal flow lines into hub */
+  .synergy-hub::before,
+  .synergy-hub::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    height: 2px;
+    width: 30px;
+    background: linear-gradient(90deg, transparent 0%, currentColor 50%, transparent 100%);
+  }
+  .synergy-hub::before {
+    right: 100%;
+    color: #E10A0A;
+  }
+  .synergy-hub::after {
+    left: 100%;
+    color: #0019A5;
+  }
+  @media (max-width: 800px) {
+    .synergy-hub::before, .synergy-hub::after { display: none; }
+  }
+
+  .synergy-core {
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #FF1493 0%, #6A0DAD 60%, #4A148C 100%);
+    display: grid;
+    place-items: center;
+    color: white;
+    box-shadow: 0 10px 30px rgba(255,20,147,0.35), 0 0 0 6px rgba(255,20,147,0.08);
+    position: relative;
+    z-index: 1;
+    animation: pulse-hub 3s ease-in-out infinite;
+  }
+  @keyframes pulse-hub {
+    0%, 100% { box-shadow: 0 10px 30px rgba(255,20,147,0.35), 0 0 0 6px rgba(255,20,147,0.08); }
+    50% { box-shadow: 0 12px 36px rgba(255,20,147,0.5), 0 0 0 12px rgba(255,20,147,0.1); }
+  }
+  .synergy-core svg { width: 36px; height: 36px; }
+
+  .synergy-hub-label {
+    margin-top: 12px;
+    font-family: 'Sora', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--volt-magenta);
     text-align: center;
+    line-height: 1.3;
   }
-  @media (max-width: 800px) { .workflow-arrow { transform: rotate(90deg); } }
+  @media (max-width: 800px) {
+    .synergy-hub-label { margin-top: 0; text-align: left; }
+  }
+
+  .synergy-outcome {
+    margin-top: 24px;
+    padding: 18px 22px;
+    background: linear-gradient(90deg, rgba(255,20,147,0.06) 0%, rgba(106,13,173,0.06) 100%);
+    border: 1px dashed rgba(255,20,147,0.3);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .synergy-outcome .icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #FF1493 0%, #6A0DAD 100%);
+    display: grid;
+    place-items: center;
+    color: white;
+    flex-shrink: 0;
+  }
+  .synergy-outcome .text {
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.45;
+  }
+  .synergy-outcome .text strong { color: var(--volt-magenta); }
 
   /* Special project callout */
   .special-project {
@@ -1458,11 +1770,54 @@
     overflow-x: auto;
   }
   .gantt-inner {
-    min-width: 880px;
+    min-width: 960px;
   }
+
+  /* Brand badge in gantt row label */
+  .gantt-brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 22px;
+    padding: 0 8px;
+    border-radius: 6px;
+    font-family: 'Sora', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    color: white;
+    flex-shrink: 0;
+    letter-spacing: 0.04em;
+  }
+  .gantt-brand.vm { background: var(--vm-red); }
+  .gantt-brand.o2 { background: var(--o2-blue); }
+
+  /* Two-segment build + run bar */
+  .gantt-segment {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 16px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    color: white;
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transform-origin: left center;
+    animation: ganttGrow 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+    text-transform: uppercase;
+  }
+  .gantt-segment.build.vm { background: linear-gradient(90deg, #FF6B6B 0%, #E10A0A 100%); border-radius: 100px 4px 4px 100px; }
+  .gantt-segment.run.vm { background: linear-gradient(90deg, #FF4D8A 0%, #C2185B 100%); border-radius: 4px 100px 100px 4px; }
+  .gantt-segment.build.o2 { background: linear-gradient(90deg, #4D6FFF 0%, #0019A5 100%); border-radius: 100px 4px 4px 100px; }
+  .gantt-segment.run.o2 { background: linear-gradient(90deg, #00A8E1 0%, #0066B3 100%); border-radius: 4px 100px 100px 4px; }
+
   .gantt-head {
     display: grid;
-    grid-template-columns: 220px repeat(4, 1fr);
+    grid-template-columns: 240px repeat(7, 1fr);
     gap: 0;
     padding-bottom: 16px;
     border-bottom: 2px solid var(--line);
@@ -1494,7 +1849,7 @@
 
   .gantt-row {
     display: grid;
-    grid-template-columns: 220px 1fr;
+    grid-template-columns: 240px 1fr;
     align-items: center;
     padding: 14px 0;
     border-bottom: 1px solid var(--line);
@@ -1542,9 +1897,9 @@
 
   .gantt-track {
     position: relative;
-    height: 32px;
+    height: 36px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(7, 1fr);
     gap: 0;
   }
   .gantt-track::before,
@@ -2261,6 +2616,7 @@
       <li><a href="#principles">Principles</a></li>
       <li><a href="#opex">OPEX</a></li>
       <li><a href="#alignment">Alignment</a></li>
+      <li><a href="#build-objective">Build</a></li>
       <li><a href="#tiers">Intent Roadmap</a></li>
       <li><a href="#delivery">Delivery</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
@@ -2542,7 +2898,7 @@
           </div>
         </div>
         <div class="headline">Generative UI Builds</div>
-        <div class="body">Digital handles every web and app based interaction - building GenUI wrappers where the interface itself becomes an active participant in the agent's reasoning. Along with the deployment of Vertex AI.</div>
+        <div class="body">Digital build GenUI wrappers where the interface itself becomes an active participant in the agent's reasoning. Along with the deployment of Vertex AI.</div>
         <div class="team-pills">
           <span class="team-pill">Web · App · Messaging</span>
           <span class="team-pill">Generative UI</span>
@@ -2553,18 +2909,76 @@
 
     </div>
 
-    <!-- Workflow strip -->
+    <!-- Workflow / Synergy diagram -->
     <div class="workflow">
-      <div class="workflow-label">⚡ Workflow</div>
-      <div class="workflow-step s1">
-        <div class="num">1</div>
-        <div class="text"><strong>Data Products</strong> creates the agent</div>
+      <div class="workflow-header">
+        <span class="workflow-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 L4 14 L11 14 L9 22 L20 10 L13 10 Z"/></svg>
+          Workflow Synergy
+        </span>
+        <span class="workflow-title">Two tracks. <em>One agent experience.</em></span>
       </div>
-      <div class="workflow-arrow">→</div>
-      <div class="workflow-step s2">
-        <div class="num">2</div>
-        <div class="text"><strong>Digital</strong> builds the Generative UI wrapper</div>
+
+      <div class="synergy">
+
+        <!-- Voice track -->
+        <div class="synergy-track voice">
+          <div class="synergy-track-head">
+            <span class="synergy-pill voice">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="white"><path d="M12 14 c1.66 0 3 -1.34 3 -3 V5 c0 -1.66 -1.34 -3 -3 -3 S9 3.34 9 5 v6 c0 1.66 1.34 3 3 3 Z M17 11 c0 2.76 -2.24 5 -5 5 s-5 -2.24 -5 -5 H5 c0 3.53 2.61 6.43 6 6.92 V21 h2 v-3.08 c3.39 -0.49 6 -3.39 6 -6.92 H17 Z"/></svg>
+              Voice
+            </span>
+            <span class="synergy-stage-label">Agent foundation</span>
+          </div>
+          <div class="synergy-steps">
+            <div class="synergy-step"><span class="dot"></span>Intent &amp; reasoning model</div>
+            <div class="synergy-step"><span class="dot"></span>Backend API actions</div>
+          </div>
+        </div>
+
+        <!-- Convergence hub -->
+        <div class="synergy-hub">
+          <div class="synergy-core">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2 v4"/>
+              <path d="M12 18 v4"/>
+              <path d="M2 12 h4"/>
+              <path d="M18 12 h4"/>
+              <circle cx="12" cy="12" r="5" fill="currentColor" stroke="none" opacity="0.9"/>
+              <circle cx="12" cy="12" r="2.5" fill="white" stroke="none"/>
+            </svg>
+          </div>
+          <div class="synergy-hub-label">Unified<br>Intelligence</div>
+        </div>
+
+        <!-- Digital track -->
+        <div class="synergy-track digital">
+          <div class="synergy-track-head">
+            <span class="synergy-pill digital">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="white"><rect x="3" y="4" width="18" height="13" rx="2"/><rect x="8" y="20" width="8" height="1.5" rx="0.75"/><rect x="11" y="17" width="2" height="3"/></svg>
+              Digital
+            </span>
+            <span class="synergy-stage-label">Generative UI layer</span>
+          </div>
+          <div class="synergy-steps">
+            <div class="synergy-step"><span class="dot"></span>GenUI wrapper &amp; rendering</div>
+            <div class="synergy-step"><span class="dot"></span>Multimodal experience</div>
+          </div>
+        </div>
+
       </div>
+
+      <!-- Joint outcome -->
+      <div class="synergy-outcome">
+        <div class="icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M8 12 L11 15 L16 9"/>
+          </svg>
+        </div>
+        <div class="text">Both tracks converge into <strong>unified intelligence</strong> — consistent reasoning, consistent actions, every channel.</div>
+      </div>
+
     </div>
 
     <!-- Special project callout -->
@@ -2581,6 +2995,76 @@
 
     <p class="section-lead" style="margin-top: 32px; margin-bottom: 0; font-size: 16px;">Objective: multimodal, multi-channel consistency. One brain. Every touchpoint.</p>
 
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ===== BUILD OBJECTIVE (VIDEO) ===== -->
+<section class="build-objective" id="build-objective">
+  <div class="container">
+    <span class="section-eyebrow">Build Objective</span>
+    <h2 class="section-title">What we're building, in motion.</h2>
+    <p class="section-lead">A first look at the agentic experience we're building together — voice intent powering a generative UI, with the interface adapting to the customer's reasoning in real time.</p>
+
+    <div class="bo-grid">
+      <!-- Video on the left -->
+      <div class="bo-video">
+        <span class="bo-video-badge"><span class="live-dot"></span>POC · V1</span>
+        <video controls preload="metadata" playsinline>
+          <source src="GECX_POC_V1.mp4" type="video/mp4">
+          Your browser doesn't support inline video. <a href="GECX_POC_V1.mp4" style="color:#FF1493;">Download the POC video</a>.
+        </video>
+      </div>
+
+      <!-- Build objective copy on the right -->
+      <div class="bo-content">
+        <h3>From static screens to <em>generative experiences.</em></h3>
+        <p>The POC demonstrates how a single agentic interaction can drive the full customer journey — intent captured by voice, surfaced through a Generative UI that builds itself around the customer's need. No menus. No hand-offs. Just one fluid experience.</p>
+
+        <div class="bo-pillars">
+          <div class="bo-pillar">
+            <div class="bo-pillar-icon p1">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2 v20"/>
+                <path d="M4 12 h16"/>
+                <circle cx="12" cy="12" r="9"/>
+              </svg>
+            </div>
+            <div class="bo-pillar-text">
+              <div class="pt">Unified intent</div>
+              <div class="ps">One agent brain understanding what the customer needs across voice and digital.</div>
+            </div>
+          </div>
+
+          <div class="bo-pillar">
+            <div class="bo-pillar-icon p2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="14" rx="2"/>
+                <path d="M8 9 L11 12 L8 15"/>
+                <line x1="13" y1="15" x2="16" y2="15"/>
+              </svg>
+            </div>
+            <div class="bo-pillar-text">
+              <div class="pt">Generative UI</div>
+              <div class="ps">The interface assembles itself in real time — driven by the agent's reasoning, not a static template.</div>
+            </div>
+          </div>
+
+          <div class="bo-pillar">
+            <div class="bo-pillar-icon p3">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 2 L4 14 L11 14 L9 22 L20 10 L13 10 Z"/>
+              </svg>
+            </div>
+            <div class="bo-pillar-text">
+              <div class="pt">Velocity to resolution</div>
+              <div class="ps">Fewer clicks, fewer dead-ends, faster outcomes. The interface gets out of the customer's way.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -3045,177 +3529,171 @@
         <!-- Header -->
         <div class="gantt-head">
           <div class="gantt-head-cell">Intent</div>
-          <div class="gantt-head-cell">H1 2027 <span class="gantt-head-year">Phase 01</span></div>
-          <div class="gantt-head-cell">H2 2027 <span class="gantt-head-year">Phase 02</span></div>
-          <div class="gantt-head-cell">H1 2028 <span class="gantt-head-year">Phase 03</span></div>
-          <div class="gantt-head-cell">H2 2028 <span class="gantt-head-year">Phase 04</span></div>
+          <div class="gantt-head-cell">AUG <span class="gantt-head-year">2027</span></div>
+          <div class="gantt-head-cell">SEP <span class="gantt-head-year">2027</span></div>
+          <div class="gantt-head-cell">OCT <span class="gantt-head-year">2027</span></div>
+          <div class="gantt-head-cell">NOV <span class="gantt-head-year">2027</span></div>
+          <div class="gantt-head-cell">DEC <span class="gantt-head-year">2027</span></div>
+          <div class="gantt-head-cell">JAN <span class="gantt-head-year">2028</span></div>
+          <div class="gantt-head-cell">FEB <span class="gantt-head-year">2028</span></div>
         </div>
 
-        <!-- Tier 1 rows -->
         <div class="gantt-row">
           <div class="gantt-label">
-            <span class="gantt-tier t1">T1</span>
+            <span class="gantt-brand o2">O2</span>
             <div>
-              <div class="name">Mobile Billing</div>
-              <div class="sub">Tier 1 · Critical</div>
+              <div class="name">Joining &amp; Upgrading</div>
+              <div class="sub">Build Aug-27 · Run Sep-27</div>
             </div>
           </div>
           <div class="gantt-track">
-            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
-            <div class="gantt-bar t1" style="left: 2%; width: 96%;">Build → Run → Optimise</div>
+            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+            <div class="gantt-segment build o2" style="left: 1.50%; width: 12.29%;">Build</div>
+            <div class="gantt-segment run o2" style="left: 14.79%; width: 12.29%;">Run</div>
           </div>
         </div>
 
         <div class="gantt-row">
           <div class="gantt-label">
-            <span class="gantt-tier t1">T1</span>
-            <div>
-              <div class="name">Package Changes & Upgrades</div>
-              <div class="sub">Tier 1 · Critical</div>
-            </div>
-          </div>
-          <div class="gantt-track">
-            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
-            <div class="gantt-bar t1" style="left: 8%; width: 90%;">Build → Run</div>
-          </div>
-        </div>
-
-        <div class="gantt-row">
-          <div class="gantt-label">
-            <span class="gantt-tier t1">T1</span>
-            <div>
-              <div class="name">General Enquiries</div>
-              <div class="sub">Tier 1 · Critical</div>
-            </div>
-          </div>
-          <div class="gantt-track">
-            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
-            <div class="gantt-bar t1" style="left: 12%; width: 86%;">Build → Run</div>
-          </div>
-        </div>
-
-        <!-- Tier 2 rows -->
-        <div class="gantt-row">
-          <div class="gantt-label">
-            <span class="gantt-tier t2">T2</span>
-            <div>
-              <div class="name">Fixed Billing</div>
-              <div class="sub">Tier 2 · Scale</div>
-            </div>
-          </div>
-          <div class="gantt-track">
-            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
-            <div class="gantt-bar t2" style="left: 28%; width: 70%;">Build → Run</div>
-          </div>
-        </div>
-
-        <div class="gantt-row">
-          <div class="gantt-label">
-            <span class="gantt-tier t2">T2</span>
+            <span class="gantt-brand vm">VM</span>
             <div>
               <div class="name">Appointments</div>
-              <div class="sub">Tier 2 · Scale</div>
+              <div class="sub">Build Sep-27 · Run Oct-27</div>
             </div>
           </div>
           <div class="gantt-track">
-            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
-            <div class="gantt-bar t2" style="left: 32%; width: 66%;">Build → Run</div>
+            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+            <div class="gantt-segment build vm" style="left: 15.79%; width: 12.29%;">Build</div>
+            <div class="gantt-segment run vm" style="left: 29.07%; width: 12.29%;">Run</div>
           </div>
         </div>
 
         <div class="gantt-row">
           <div class="gantt-label">
-            <span class="gantt-tier t2">T2</span>
+            <span class="gantt-brand o2">O2</span>
             <div>
-              <div class="name">General Care</div>
-              <div class="sub">Tier 2 · Scale</div>
+              <div class="name">Billing &amp; Payments</div>
+              <div class="sub">Build Sep-27 · Run Oct-27</div>
             </div>
           </div>
           <div class="gantt-track">
-            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
-            <div class="gantt-bar t2" style="left: 38%; width: 60%;">Build → Run</div>
-          </div>
-        </div>
-
-        <!-- Tier 3 rows -->
-        <div class="gantt-row">
-          <div class="gantt-label">
-            <span class="gantt-tier t3">T3</span>
-            <div>
-              <div class="name">Knowledge & FAQs</div>
-              <div class="sub">Tier 3 · Long Tail</div>
-            </div>
-          </div>
-          <div class="gantt-track">
-            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
-            <div class="gantt-bar t3" style="left: 52%; width: 46%;">Deploy</div>
+            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+            <div class="gantt-segment build o2" style="left: 15.79%; width: 12.29%;">Build</div>
+            <div class="gantt-segment run o2" style="left: 29.07%; width: 12.29%;">Run</div>
           </div>
         </div>
 
         <div class="gantt-row">
           <div class="gantt-label">
-            <span class="gantt-tier t3">T3</span>
+            <span class="gantt-brand vm">VM</span>
             <div>
-              <div class="name">Product Information</div>
-              <div class="sub">Tier 3 · Long Tail</div>
+              <div class="name">Faults</div>
+              <div class="sub">Build Oct-27 · Run Nov-27</div>
             </div>
           </div>
           <div class="gantt-track">
-            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
-            <div class="gantt-bar t3" style="left: 56%; width: 42%;">Deploy</div>
-          </div>
-        </div>
-
-        <!-- Phase 4 / Tier 4 rows -->
-        <div class="gantt-row">
-          <div class="gantt-label">
-            <span class="gantt-tier t4">T4</span>
-            <div>
-              <div class="name">Retentions & Faults</div>
-              <div class="sub">Phase 04 · Sweep</div>
-            </div>
-          </div>
-          <div class="gantt-track">
-            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
-            <div class="gantt-bar t4" style="left: 75%; width: 23%;">Onboard</div>
+            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+            <div class="gantt-segment build vm" style="left: 30.07%; width: 12.29%;">Build</div>
+            <div class="gantt-segment run vm" style="left: 43.36%; width: 12.29%;">Run</div>
           </div>
         </div>
 
         <div class="gantt-row">
           <div class="gantt-label">
-            <span class="gantt-tier t4">T4</span>
+            <span class="gantt-brand vm">VM</span>
             <div>
-              <div class="name">Account, Payment & Devices</div>
-              <div class="sub">Phase 04 · Sweep</div>
+              <div class="name">New Acquisition</div>
+              <div class="sub">Build Oct-27 · Run Nov-27</div>
             </div>
           </div>
           <div class="gantt-track">
-            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
-            <div class="gantt-bar t4" style="left: 78%; width: 20%;">Onboard</div>
+            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+            <div class="gantt-segment build vm" style="left: 30.07%; width: 12.29%;">Build</div>
+            <div class="gantt-segment run vm" style="left: 43.36%; width: 12.29%;">Run</div>
           </div>
         </div>
 
         <div class="gantt-row">
           <div class="gantt-label">
-            <span class="gantt-tier t4">T4</span>
+            <span class="gantt-brand o2">O2</span>
             <div>
-              <div class="name">Long Tail · 23 remaining</div>
-              <div class="sub">Phase 04 · Sweep</div>
+              <div class="name">Account</div>
+              <div class="sub">Build Nov-27 · Run Dec-27</div>
             </div>
           </div>
           <div class="gantt-track">
-            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
-            <div class="gantt-bar t4" style="left: 80%; width: 18%;">Sweep</div>
+            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+            <div class="gantt-segment build o2" style="left: 44.36%; width: 12.29%;">Build</div>
+            <div class="gantt-segment run o2" style="left: 57.64%; width: 12.29%;">Run</div>
+          </div>
+        </div>
+
+        <div class="gantt-row">
+          <div class="gantt-label">
+            <span class="gantt-brand vm">VM</span>
+            <div>
+              <div class="name">Package Change</div>
+              <div class="sub">Build Nov-27 · Run Dec-27</div>
+            </div>
+          </div>
+          <div class="gantt-track">
+            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+            <div class="gantt-segment build vm" style="left: 44.36%; width: 12.29%;">Build</div>
+            <div class="gantt-segment run vm" style="left: 57.64%; width: 12.29%;">Run</div>
+          </div>
+        </div>
+
+        <div class="gantt-row">
+          <div class="gantt-label">
+            <span class="gantt-brand vm">VM</span>
+            <div>
+              <div class="name">Essential Broadband</div>
+              <div class="sub">Build Dec-27 · Run Jan-28</div>
+            </div>
+          </div>
+          <div class="gantt-track">
+            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+            <div class="gantt-segment build vm" style="left: 58.64%; width: 12.29%;">Build</div>
+            <div class="gantt-segment run vm" style="left: 71.93%; width: 12.29%;">Run</div>
+          </div>
+        </div>
+
+        <div class="gantt-row">
+          <div class="gantt-label">
+            <span class="gantt-brand o2">O2</span>
+            <div>
+              <div class="name">Network Coverage &amp; International</div>
+              <div class="sub">Build Dec-27 · Run Jan-28</div>
+            </div>
+          </div>
+          <div class="gantt-track">
+            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+            <div class="gantt-segment build o2" style="left: 58.64%; width: 12.29%;">Build</div>
+            <div class="gantt-segment run o2" style="left: 71.93%; width: 12.29%;">Run</div>
+          </div>
+        </div>
+
+        <div class="gantt-row">
+          <div class="gantt-label">
+            <span class="gantt-brand vm">VM</span>
+            <div>
+              <div class="name">Billing</div>
+              <div class="sub">Build Jan-28 · Run Feb-28</div>
+            </div>
+          </div>
+          <div class="gantt-track">
+            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+            <div class="gantt-segment build vm" style="left: 72.93%; width: 12.29%;">Build</div>
+            <div class="gantt-segment run vm" style="left: 86.21%; width: 12.29%;">Run</div>
           </div>
         </div>
 
       </div>
 
       <div class="gantt-legend">
-        <div class="gantt-legend-item"><span class="gantt-legend-dot t1"></span>Tier 1 · Critical</div>
-        <div class="gantt-legend-item"><span class="gantt-legend-dot t2"></span>Tier 2 · Scale</div>
-        <div class="gantt-legend-item"><span class="gantt-legend-dot t3"></span>Tier 3 · Long Tail</div>
-        <div class="gantt-legend-item"><span class="gantt-legend-dot t4"></span>Phase 04 · Sweep</div>
+        <div class="gantt-legend-item"><span class="gantt-legend-dot" style="background: var(--vm-red);"></span>Virgin Media</div>
+        <div class="gantt-legend-item"><span class="gantt-legend-dot" style="background: var(--o2-blue);"></span>O2</div>
+        <div class="gantt-legend-item"><span class="gantt-legend-dot" style="background: linear-gradient(90deg, #E10A0A 0%, #FF1493 100%);"></span>Build → Run</div>
       </div>
     </div>
     </div>
