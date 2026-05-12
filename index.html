@@ -1770,7 +1770,7 @@
     overflow-x: auto;
   }
   .gantt-inner {
-    min-width: 960px;
+    min-width: 1120px;
   }
 
   /* Brand badge in gantt row label */
@@ -1792,7 +1792,7 @@
   .gantt-brand.vm { background: var(--vm-red); }
   .gantt-brand.o2 { background: var(--o2-blue); }
 
-  /* Two-segment build + run bar */
+  /* Three-segment phase bar: Agent Build → Gen UI Build → Optimise */
   .gantt-segment {
     position: absolute;
     top: 50%;
@@ -1800,24 +1800,39 @@
     height: 16px;
     display: flex;
     align-items: center;
-    padding: 0 10px;
+    justify-content: center;
+    padding: 0 6px;
     color: white;
-    font-size: 9.5px;
+    font-size: 9px;
     font-weight: 800;
     letter-spacing: 0.04em;
     box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     transform-origin: left center;
     animation: ganttGrow 1s cubic-bezier(0.22, 1, 0.36, 1) both;
     text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
   }
-  .gantt-segment.build.vm { background: linear-gradient(90deg, #FF6B6B 0%, #E10A0A 100%); border-radius: 100px 4px 4px 100px; }
-  .gantt-segment.run.vm { background: linear-gradient(90deg, #FF4D8A 0%, #C2185B 100%); border-radius: 4px 100px 100px 4px; }
-  .gantt-segment.build.o2 { background: linear-gradient(90deg, #4D6FFF 0%, #0019A5 100%); border-radius: 100px 4px 4px 100px; }
-  .gantt-segment.run.o2 { background: linear-gradient(90deg, #00A8E1 0%, #0066B3 100%); border-radius: 4px 100px 100px 4px; }
+  /* Left cap for first phase, right cap for last */
+  .gantt-segment.agent { border-radius: 100px 4px 4px 100px; }
+  .gantt-segment.genui { border-radius: 4px; }
+  .gantt-segment.optimise { border-radius: 4px 100px 100px 4px; }
+  /* Stand-alone (single bar with no neighbours) — fully rounded */
+  .gantt-segment.solo { border-radius: 100px; }
+
+  /* VM brand colour ramp */
+  .gantt-segment.agent.vm { background: linear-gradient(90deg, #FF6B6B 0%, #E10A0A 100%); }
+  .gantt-segment.genui.vm { background: linear-gradient(90deg, #FF1493 0%, #C2185B 100%); }
+  .gantt-segment.optimise.vm { background: linear-gradient(90deg, #A055D6 0%, #6A0DAD 100%); }
+
+  /* O2 brand colour ramp */
+  .gantt-segment.agent.o2 { background: linear-gradient(90deg, #4D6FFF 0%, #0019A5 100%); }
+  .gantt-segment.genui.o2 { background: linear-gradient(90deg, #00A8E1 0%, #0066B3 100%); }
+  .gantt-segment.optimise.o2 { background: linear-gradient(90deg, #2EC4B6 0%, #1A9C8E 100%); }
 
   .gantt-head {
     display: grid;
-    grid-template-columns: 240px repeat(7, 1fr);
+    grid-template-columns: 240px repeat(9, 1fr);
     gap: 0;
     padding-bottom: 16px;
     border-bottom: 2px solid var(--line);
@@ -1899,7 +1914,7 @@
     position: relative;
     height: 36px;
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(9, 1fr);
     gap: 0;
   }
   .gantt-track::before,
@@ -1966,9 +1981,7 @@
 
   /* ====== ROADMAP GANTT SUB-SECTION ====== */
   .roadmap-gantt-block {
-    margin-top: 64px;
-    padding-top: 56px;
-    border-top: 1px solid var(--line);
+    margin-top: 0;
   }
   .roadmap-gantt-head {
     margin-bottom: 32px;
@@ -3447,81 +3460,38 @@
 <section id="roadmap">
   <div class="container">
     <span class="section-eyebrow">Delivery Roadmap</span>
-    <h2 class="section-title">Programmed Progression. Compounding wins.</h2>
-    <p class="section-lead">Each phase builds on the last - establish the foundation, scale the proven, optimise the long tail, then sweep up everything that's left.</p>
+    <h2 class="section-title">When each intent goes live.</h2>
+    <p class="section-lead">A half-by-half view of the agentic roadmap - sequencing the work so value compounds: foundation first, scale next, then long-tail and full coverage.</p>
 
-    <div class="roadmap-track">
-      <div class="phase phase-1">
-        <span class="phase-num">1</span>
-        <div class="phase-label">Phase 01 · Immediate</div>
-        <h3>Establish the green foundation</h3>
-        <ul>
-          <li>Deliver Tier 1 intents</li>
-          <li>Mobile Billing live</li>
-          <li>Upgrades & General Enquiries</li>
-          <li>Hit ≥55% containment</li>
-          <li>Stable agent performance</li>
-        </ul>
-      </div>
-
-      <div class="phase phase-2">
-        <span class="phase-num">2</span>
-        <div class="phase-label">Phase 02 · Scale</div>
-        <h3>Scale & expand coverage</h3>
-        <ul>
-          <li>Roll out Tier 2 intents</li>
-          <li>Fixed Billing onboarded</li>
-          <li>Appointments journey live</li>
-          <li>Parallel squad execution</li>
-          <li>Cross-product orchestration</li>
-        </ul>
-      </div>
-
-      <div class="phase phase-3">
-        <span class="phase-num">3</span>
-        <div class="phase-label">Phase 03 · Optimise</div>
-        <h3>Optimise & extend</h3>
-        <ul>
-          <li>Deploy Tier 3 knowledge intents</li>
-          <li>Activate learning loops</li>
-          <li>Drive to 6.5m containment</li>
-          <li>Reduce agent handling time</li>
-          <li>Extend across long-tail</li>
-        </ul>
-      </div>
-
-      <div class="phase phase-4">
-        <span class="phase-num">4</span>
-        <div class="phase-label">Phase 04 · 2028 Sweep</div>
-        <h3>Cover every remaining intent</h3>
-        <ul>
-          <li>23 remaining intents in scope</li>
-          <li>7.3m+ interactions covered</li>
-          <li>Full VM + O2 estate</li>
-          <li>Retentions, Faults, Account</li>
-          <li>Drive to total CX coverage</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- ===== When each intent goes live (sub-section, formerly Value Map) ===== -->
-    <div class="roadmap-gantt-block">
-      <div class="roadmap-gantt-head">
-        <h3>When each intent goes live.</h3>
-        <p>A half-by-half view of the agentic roadmap - sequencing the work so value compounds: foundation first, scale next, then long-tail and full coverage.</p>
-      </div>
     <div class="gantt">
       <div class="gantt-inner">
         <!-- Header -->
         <div class="gantt-head">
           <div class="gantt-head-cell">Intent</div>
-          <div class="gantt-head-cell">AUG <span class="gantt-head-year">2027</span></div>
-          <div class="gantt-head-cell">SEP <span class="gantt-head-year">2027</span></div>
-          <div class="gantt-head-cell">OCT <span class="gantt-head-year">2027</span></div>
-          <div class="gantt-head-cell">NOV <span class="gantt-head-year">2027</span></div>
-          <div class="gantt-head-cell">DEC <span class="gantt-head-year">2027</span></div>
-          <div class="gantt-head-cell">JAN <span class="gantt-head-year">2028</span></div>
-          <div class="gantt-head-cell">FEB <span class="gantt-head-year">2028</span></div>
+          <div class="gantt-head-cell">JUN <span class="gantt-head-year">2026</span></div>
+          <div class="gantt-head-cell">JUL <span class="gantt-head-year">2026</span></div>
+          <div class="gantt-head-cell">AUG <span class="gantt-head-year">2026</span></div>
+          <div class="gantt-head-cell">SEP <span class="gantt-head-year">2026</span></div>
+          <div class="gantt-head-cell">OCT <span class="gantt-head-year">2026</span></div>
+          <div class="gantt-head-cell">NOV <span class="gantt-head-year">2026</span></div>
+          <div class="gantt-head-cell">DEC <span class="gantt-head-year">2026</span></div>
+          <div class="gantt-head-cell">JAN <span class="gantt-head-year">2027</span></div>
+          <div class="gantt-head-cell">FEB <span class="gantt-head-year">2027</span></div>
+        </div>
+
+        <div class="gantt-row">
+          <div class="gantt-label">
+            <span class="gantt-brand o2">O2</span>
+            <div>
+              <div class="name">Vertex AI Search</div>
+              <div class="sub">GenUI Jun-26 · Optimise Jul-26</div>
+            </div>
+          </div>
+          <div class="gantt-track">
+            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+            <div class="gantt-segment agent o2" style="left: 1.00%; width: 9.81%;">GenUI</div>
+            <div class="gantt-segment optimise o2" style="left: 11.41%; width: 9.81%;">Optimise</div>
+          </div>
         </div>
 
         <div class="gantt-row">
@@ -3529,13 +3499,14 @@
             <span class="gantt-brand o2">O2</span>
             <div>
               <div class="name">Joining &amp; Upgrading</div>
-              <div class="sub">Build Aug-27 · Run Sep-27</div>
+              <div class="sub">Agent Jul-26 · GenUI Aug-26 · Optimise Sep-26</div>
             </div>
           </div>
           <div class="gantt-track">
-            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
-            <div class="gantt-segment build o2" style="left: 1.50%; width: 12.29%;">Build</div>
-            <div class="gantt-segment run o2" style="left: 14.79%; width: 12.29%;">Run</div>
+            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+            <div class="gantt-segment agent o2" style="left: 12.11%; width: 9.81%;">Agent</div>
+            <div class="gantt-segment genui o2" style="left: 22.52%; width: 10.51%;">GenUI</div>
+            <div class="gantt-segment optimise o2" style="left: 33.63%; width: 9.81%;">Optimise</div>
           </div>
         </div>
 
@@ -3544,13 +3515,14 @@
             <span class="gantt-brand vm">VM</span>
             <div>
               <div class="name">Appointments</div>
-              <div class="sub">Build Sep-27 · Run Oct-27</div>
+              <div class="sub">Agent Aug-26 · GenUI Sep-26 · Optimise Oct-26</div>
             </div>
           </div>
           <div class="gantt-track">
-            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
-            <div class="gantt-segment build vm" style="left: 15.79%; width: 12.29%;">Build</div>
-            <div class="gantt-segment run vm" style="left: 29.07%; width: 12.29%;">Run</div>
+            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+            <div class="gantt-segment agent vm" style="left: 23.22%; width: 9.81%;">Agent</div>
+            <div class="gantt-segment genui vm" style="left: 33.63%; width: 10.51%;">GenUI</div>
+            <div class="gantt-segment optimise vm" style="left: 44.74%; width: 9.81%;">Optimise</div>
           </div>
         </div>
 
@@ -3559,13 +3531,14 @@
             <span class="gantt-brand o2">O2</span>
             <div>
               <div class="name">Billing &amp; Payments</div>
-              <div class="sub">Build Sep-27 · Run Oct-27</div>
+              <div class="sub">Agent Aug-26 · GenUI Sep-26 · Optimise Oct-26</div>
             </div>
           </div>
           <div class="gantt-track">
-            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
-            <div class="gantt-segment build o2" style="left: 15.79%; width: 12.29%;">Build</div>
-            <div class="gantt-segment run o2" style="left: 29.07%; width: 12.29%;">Run</div>
+            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+            <div class="gantt-segment agent o2" style="left: 23.22%; width: 9.81%;">Agent</div>
+            <div class="gantt-segment genui o2" style="left: 33.63%; width: 10.51%;">GenUI</div>
+            <div class="gantt-segment optimise o2" style="left: 44.74%; width: 9.81%;">Optimise</div>
           </div>
         </div>
 
@@ -3574,13 +3547,14 @@
             <span class="gantt-brand vm">VM</span>
             <div>
               <div class="name">Faults</div>
-              <div class="sub">Build Oct-27 · Run Nov-27</div>
+              <div class="sub">Agent Sep-26 · GenUI Oct-26 · Optimise Nov-26</div>
             </div>
           </div>
           <div class="gantt-track">
-            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
-            <div class="gantt-segment build vm" style="left: 30.07%; width: 12.29%;">Build</div>
-            <div class="gantt-segment run vm" style="left: 43.36%; width: 12.29%;">Run</div>
+            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+            <div class="gantt-segment agent vm" style="left: 34.33%; width: 9.81%;">Agent</div>
+            <div class="gantt-segment genui vm" style="left: 44.74%; width: 10.51%;">GenUI</div>
+            <div class="gantt-segment optimise vm" style="left: 55.86%; width: 9.81%;">Optimise</div>
           </div>
         </div>
 
@@ -3589,13 +3563,30 @@
             <span class="gantt-brand vm">VM</span>
             <div>
               <div class="name">New Acquisition</div>
-              <div class="sub">Build Oct-27 · Run Nov-27</div>
+              <div class="sub">Agent Sep-26 · GenUI Oct-26 · Optimise Nov-26</div>
             </div>
           </div>
           <div class="gantt-track">
-            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
-            <div class="gantt-segment build vm" style="left: 30.07%; width: 12.29%;">Build</div>
-            <div class="gantt-segment run vm" style="left: 43.36%; width: 12.29%;">Run</div>
+            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+            <div class="gantt-segment agent vm" style="left: 34.33%; width: 9.81%;">Agent</div>
+            <div class="gantt-segment genui vm" style="left: 44.74%; width: 10.51%;">GenUI</div>
+            <div class="gantt-segment optimise vm" style="left: 55.86%; width: 9.81%;">Optimise</div>
+          </div>
+        </div>
+
+        <div class="gantt-row">
+          <div class="gantt-label">
+            <span class="gantt-brand vm">VM</span>
+            <div>
+              <div class="name">Retentions</div>
+              <div class="sub">Agent Sep-26 · GenUI Oct-26 · Optimise Nov-26</div>
+            </div>
+          </div>
+          <div class="gantt-track">
+            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+            <div class="gantt-segment agent vm" style="left: 34.33%; width: 9.81%;">Agent</div>
+            <div class="gantt-segment genui vm" style="left: 44.74%; width: 10.51%;">GenUI</div>
+            <div class="gantt-segment optimise vm" style="left: 55.86%; width: 9.81%;">Optimise</div>
           </div>
         </div>
 
@@ -3604,13 +3595,14 @@
             <span class="gantt-brand o2">O2</span>
             <div>
               <div class="name">Account</div>
-              <div class="sub">Build Nov-27 · Run Dec-27</div>
+              <div class="sub">Agent Oct-26 · GenUI Nov-26 · Optimise Dec-26</div>
             </div>
           </div>
           <div class="gantt-track">
-            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
-            <div class="gantt-segment build o2" style="left: 44.36%; width: 12.29%;">Build</div>
-            <div class="gantt-segment run o2" style="left: 57.64%; width: 12.29%;">Run</div>
+            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+            <div class="gantt-segment agent o2" style="left: 45.44%; width: 9.81%;">Agent</div>
+            <div class="gantt-segment genui o2" style="left: 55.86%; width: 10.51%;">GenUI</div>
+            <div class="gantt-segment optimise o2" style="left: 66.97%; width: 9.81%;">Optimise</div>
           </div>
         </div>
 
@@ -3619,13 +3611,14 @@
             <span class="gantt-brand vm">VM</span>
             <div>
               <div class="name">Package Change</div>
-              <div class="sub">Build Nov-27 · Run Dec-27</div>
+              <div class="sub">Agent Oct-26 · GenUI Nov-26 · Optimise Dec-26</div>
             </div>
           </div>
           <div class="gantt-track">
-            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
-            <div class="gantt-segment build vm" style="left: 44.36%; width: 12.29%;">Build</div>
-            <div class="gantt-segment run vm" style="left: 57.64%; width: 12.29%;">Run</div>
+            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+            <div class="gantt-segment agent vm" style="left: 45.44%; width: 9.81%;">Agent</div>
+            <div class="gantt-segment genui vm" style="left: 55.86%; width: 10.51%;">GenUI</div>
+            <div class="gantt-segment optimise vm" style="left: 66.97%; width: 9.81%;">Optimise</div>
           </div>
         </div>
 
@@ -3634,13 +3627,14 @@
             <span class="gantt-brand vm">VM</span>
             <div>
               <div class="name">Essential Broadband</div>
-              <div class="sub">Build Dec-27 · Run Jan-28</div>
+              <div class="sub">Agent Nov-26 · GenUI Dec-26 · Optimise Jan-27</div>
             </div>
           </div>
           <div class="gantt-track">
-            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
-            <div class="gantt-segment build vm" style="left: 58.64%; width: 12.29%;">Build</div>
-            <div class="gantt-segment run vm" style="left: 71.93%; width: 12.29%;">Run</div>
+            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+            <div class="gantt-segment agent vm" style="left: 56.56%; width: 9.81%;">Agent</div>
+            <div class="gantt-segment genui vm" style="left: 66.97%; width: 10.51%;">GenUI</div>
+            <div class="gantt-segment optimise vm" style="left: 78.08%; width: 9.81%;">Optimise</div>
           </div>
         </div>
 
@@ -3649,13 +3643,14 @@
             <span class="gantt-brand o2">O2</span>
             <div>
               <div class="name">Network Coverage &amp; International</div>
-              <div class="sub">Build Dec-27 · Run Jan-28</div>
+              <div class="sub">Agent Nov-26 · GenUI Dec-26 · Optimise Jan-27</div>
             </div>
           </div>
           <div class="gantt-track">
-            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
-            <div class="gantt-segment build o2" style="left: 58.64%; width: 12.29%;">Build</div>
-            <div class="gantt-segment run o2" style="left: 71.93%; width: 12.29%;">Run</div>
+            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+            <div class="gantt-segment agent o2" style="left: 56.56%; width: 9.81%;">Agent</div>
+            <div class="gantt-segment genui o2" style="left: 66.97%; width: 10.51%;">GenUI</div>
+            <div class="gantt-segment optimise o2" style="left: 78.08%; width: 9.81%;">Optimise</div>
           </div>
         </div>
 
@@ -3664,13 +3659,14 @@
             <span class="gantt-brand vm">VM</span>
             <div>
               <div class="name">Billing</div>
-              <div class="sub">Build Jan-28 · Run Feb-28</div>
+              <div class="sub">Agent Dec-26 · GenUI Jan-27 · Optimise Feb-27</div>
             </div>
           </div>
           <div class="gantt-track">
-            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
-            <div class="gantt-segment build vm" style="left: 72.93%; width: 12.29%;">Build</div>
-            <div class="gantt-segment run vm" style="left: 86.21%; width: 12.29%;">Run</div>
+            <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+            <div class="gantt-segment agent vm" style="left: 67.67%; width: 9.81%;">Agent</div>
+            <div class="gantt-segment genui vm" style="left: 78.08%; width: 10.51%;">GenUI</div>
+            <div class="gantt-segment optimise vm" style="left: 89.19%; width: 9.81%;">Optimise</div>
           </div>
         </div>
 
@@ -3679,9 +3675,8 @@
       <div class="gantt-legend">
         <div class="gantt-legend-item"><span class="gantt-legend-dot" style="background: var(--vm-red);"></span>Virgin Media</div>
         <div class="gantt-legend-item"><span class="gantt-legend-dot" style="background: var(--o2-blue);"></span>O2</div>
-        <div class="gantt-legend-item"><span class="gantt-legend-dot" style="background: linear-gradient(90deg, #E10A0A 0%, #FF1493 100%);"></span>Build → Run</div>
+        <div class="gantt-legend-item"><span class="gantt-legend-dot" style="background: linear-gradient(90deg, #E10A0A 0%, #FF1493 50%, #6A0DAD 100%);"></span>Agent → GenUI → Optimise</div>
       </div>
-    </div>
     </div>
   </div>
 </section>
